@@ -116,6 +116,60 @@ Extreme close-mic'd hummingbird, dense Atlantic Forest understory, macro documen
 
 ---
 
+### 7. Muriqui-do-sul (*Brachyteles arachnoides*)
+
+- **Espécie / Som-alvo:** Muriqui-do-sul
+- **Autor:** João Ohashi
+- **Data:** 2026-09-28
+- **Ferramenta:** Adobe Firefly · Gerar efeitos sonoros
+- **Objetivo do Áudio:** Construir uma paisagem acústica centrada na comunicação entre grupos de muriqui-do-sul no dossel da Mata Atlântica. A peça parte da ideia de que a floresta não é apenas um cenário, mas um espaço de comunicação: os chamados aparecem inseridos no próprio ambiente e separados por momentos de escuta e distância.
+- **Duração Gerada:** ~25s por geração (limite do módulo) · 2 gerações principais + complementação (chatgpt) · composição final de 1:00
+- **Prompt:**
+
+```text
+[Camada Ambiência] Dense humid Atlantic Forest in southeastern Brazil at dawn, native Atlantic Forest vegetation, realistic natural field recording, subtle forest ambience, no music, no humans, no urban sounds.
+
+[Camada Vocalização] Two groups of southern muriqui monkeys (Brachyteles arachnoides) communicating across the canopy, realistic wildlife recording, natural monkey vocalizations, distant calls between groups, dense Atlantic Forest, no music, no humans, no urban sounds.
+```
+
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 215 / 252 caracteres (prompts curtos mantidos para evitar dispersão do modelo).
+  - **Restrições / Termos negativos:** `no music, no humans, no urban sounds` (impede elementos externos à paisagem e evita transformar o som em trilha sonora).
+  - **Iterações / Ajustes realizados:** A floresta e a vocalização foram geradas separadamente para permitir o controle da presença do ambiente sem cobrir o som do animal.
+  - **Montagem:** Elementos unidos com transições suaves mantendo a ambiência no início e fim. Composição final ajustada para 1:00 exato.
+  - **Nota de escuta:** Reconstrução generativa por IA para traduzir a ideia de comunicação entre grupos, e não uma gravação documental autêntica.
+
+--- 
+
+### 8. Mutum-de-Alagoas (*Mitu mitu*)
+
+* **Espécie / Som-alvo:** Mutum-de-Alagoas (Mitu Mitu)
+* **Autor:** João Ohashi
+* **Data:** 2026-09-28
+* **Ferramenta:** Adobe Firefly · Gerar efeitos sonoros
+* **Objetivo do Áudio:** Construir uma peça sobre presença, desaparecimento e ausência a partir da vocalização do mutum-de-Alagoas. Diferentemente do muriqui, em que o som representa comunicação entre indivíduos, aqui a vocalização é tratada como um evento isolado dentro da floresta, criando uma progressiva sensação de rarefação e silêncio.
+* **Duração Gerada:** 30s por geração · 4 arquivos selecionados · composição final de 1:22
+* **Prompt:**
+
+```text
+[Vocalização 1] Mitu mitu bird vocalization, natural bird call, clear open sound, short repeated notes, organic animal voice, realistic wildlife recording.
+
+[Vocalização 2] Mitu mitu bird call, three clear vocal notes, open natural voice, moderate pitch, soft first two notes, strong final note, realistic bird vocalization.
+
+[Ambiência 1] Dense Atlantic Forest vegetation moving gently in a humid breeze, leaves and branches softly brushing against each other, realistic close natural field recording, northeastern Brazilian Atlantic Forest, no animals, no humans, no music.
+
+[Ambiência 2] Dense humid Atlantic Forest in northeastern Brazil at dawn, native Atlantic Forest vegetation, realistic natural field recording, no music, no humans, no urban sounds.
+```
+
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 143 a 248 caracteres por prompt (foco na identificação da espécie e clareza acústica).
+  - **Restrições / Termos negativos:** `no music, no humans, no urban sounds` e `no animals` (na camada de vento/folhas, para evitar competição com o sujeito principal).
+  - **Iterações / Ajustes realizados:** Primeiras tentativas resultaram em sons muito abafados/graves. O prompt foi reescrito trocando termos obscuros por `clear`, `open`, `moderate pitch` e `three clear vocal notes`.
+  - **Montagem:** Combinação dos 4 arquivos (ambiente → vocalizações → retorno ao ambiente) totalizando 1:22.
+  - **Nota de escuta / Contraponto:** Reconstrução generativa poética sobre a presença de uma espécie extinta na natureza. Em contraste com a comunicação contínua do muriqui, o mutum é marcado pelo isolamento do chamado e pelo silêncio subsequente.
+
+---
+
 Copie e preencha a estrutura abaixo para registrar novos prompts de efeitos sonoros:
 
 ```markdown
