@@ -74,6 +74,48 @@ Massed granular scrape of thousands of small hard insect bodies dragging across 
 
 ---
 
+### 5. Preguiça-de-pescoço-largo (*Bradypus torquatus*)
+
+- **Espécie / Som-alvo:** Preguiça-de-pescoço-largo
+- **Autor:** Levi Serrano
+- **Data:** 2026-09-28
+- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 80% · Loop desligado · Prompt enhancement desligado
+- **Objetivo do Áudio:** Traduzir em som o gemido noturno da preguiça no dossel escuro da Mata Atlântica. É a primeira peça noturna da coleção e o primeiro mamífero depois do mico-leão-dourado: um animal lento e grave contra o trinado rápido e diurno do mico.
+- **Duração Gerada:** 20s por geração (abaixo do teto de 30s) · 3 gerações · 4 takes escolhidas de 12 geradas
+- **Prompt:**
+```text
+Night Atlantic Forest canopy, documentary field recording. Foreground: single sloth calling, prominent and close, slow descending groan rising into a long nasal whistle, throaty and low, clearly audible, sparse and irregular. Background: nearly silent forest, very faint sparse insects, slight leaf stir, mostly empty darkness between calls. No music, no melody, no rhythm, no voice, no reverb.
+```
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 394 / 450
+  - **Restrições / Termos negativos:** `no music, no melody, no rhythm, no voice`, `no reverb`. O `no reverb` é deliberado: o objetivo é preservar o pigarro grave do animal, não o espaço acústico. A sensação de distância é recuperada pela irregularidade (`sparse and irregular`, `mostly empty darkness between calls`), não pelo afastamento da fonte.
+  - **Iterações / Ajustes realizados:** 1 regeração. A primeira versão do prompt especificava `wide distant perspective` e `Background: dense night insects`. Ouvido o resultado, o insect wall mascarou o sujeito e a peça não foi reconhecível como preguiça. Reescrito para a versão acima: `wide distant perspective` → `prominent and close`, `dense night insects` → `very faint sparse insects`. Segunda geração e terceira geração foi aprovada sem alteração.
+  - **Nota de escuta:** a principal lição do processo. Numa mix de sound effects, uma cue de background densa é renderizada como camada densa e engole o foreground, por mais bem especificado que ele esteja. Quando há um sujeito a ser identificado, o background precisa ser esvaziado ativamente,  não basta removê-lo.
+
+---
+
+### 6. Beija-flor-preto (*Florisuga fusca*)
+
+- **Espécie / Som-alvo:** Beija-flor-preto
+- **Autor:** Levi Serrano
+- **Data:** 2026-09-28
+- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 80% · Loop desligado · Prompt enhancement desligado
+- **Objetivo do Áudio:** Traduzir o canto do beija-flor-preto como fronteira acústica: a única ave capaz de cantar em frequência ultrassônica, cujo som se situa no ponto de encontro entre passerídeo e inseto ou morcego. É a peça mais conceitual da coleção, e a única cuja tradução assume distância em relação ao original.
+- **Duração Gerada:** 30s por geração (teto do módulo) · 1 geração · 3 takes escolhidas de 4 geradas
+- **Prompt:**
+```text
+Extreme close-mic'd hummingbird, dense Atlantic Forest understory, macro documentary recording. Foreground: single tiny hummingbird trill, very high thin whistles pitched far above normal birdsong, dry insect-like sharp edges, rapid irregular bursts, then silence. Background: near-absolute quiet, faint canopy air, almost no ambience. No music, no melody, no rhythm, no voice, no reverb.
+```
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 388 / 450
+  - **Restrições / Termos negativos:** `no music, no melody, no rhythm, no voice`, `no reverb`. **Ausência deliberada de `no birdsong`** — termo idêntico ao usado no mico-leão-dourado, onde bloqueia o modelo de puxar para ave genérico. Aqui o canto *é* birdsong, então suprimir o termo derrubaria a própria peça. O que barra o resultado de virar material melódico são `no music`, `no melody` e `no rhythm`.
+  - **Nome científico omitido do prompt:** `Florisuga fusca` não é um beija-flor — é um jacamar (Galbulidae), parente do beija-bobo. Nem o binomial nem o nome popular português servem ao modelo. `hummingbird` foi usado deliberadamente como mentira acústica: é o token que ancora trilo agudo e fino, que é o que se quer.
+  - **Iterações / Ajustes realizados:** nenhuma. Aprovada na primeira geração.
+  - **Nota de escuta:** o sintetizador não produz 50 kHz. A peça é uma tradução poética, não uma reprodução fiel — o limite é do modelo, não do prompt.
+  - **Contraponto à preguiça:** as duas peças também se opõem na densidade. `rapid irregular bursts` contra `sparse and irregular`; `near-absolute quiet` com silêncio como conteúdo contra silêncio como intervalo entre eventos.
+
+---
+
 Copie e preencha a estrutura abaixo para registrar novos prompts de efeitos sonoros:
 
 ```markdown
