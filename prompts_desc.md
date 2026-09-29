@@ -170,6 +170,44 @@ Extreme close-mic'd hummingbird, dense Atlantic Forest understory, macro documen
 
 ---
 
+### 9. Bugio-ruivo (*Alouatta guariba*)
+
+- **Espécie / Som-alvo:** Bugio-ruivo (*Alouatta guariba*)
+- **Autor:** Lucas Fernandes Bezerra Melo
+- **Data:** 2026-09-28
+- **Ferramenta:** ElevenLabs Sound Effects
+- **Objetivo do Áudio:** Simular a potente vocalização gutural e territorial do bugio-ruivo ecoando pelo alto dossel da Mata Atlântica ao amanhecer, mantendo a dinâmica e a ressonância cavernosa natural da espécie.
+- **Duração Gerada:** 30s por geração · 2 takes geradas (`bugio_ruivo_1.wav` e `bugio_ruivo_2.wav`)
+- **Prompt:**
+```text
+Naturalistic field recording, high Atlantic Forest canopy at dawn, documentary style. Foreground: deep resonant guttural roar of a male brown howler monkey (Alouatta guariba), loud booming vocalization echoing through trees, long low-frequency growls and barks with natural pauses. Background: faint humid breeze, distant canopy ambience, soft leaves rustling. No music, no melody, no rhythm, no voice.
+```
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 389 / 450
+  - **Restrições / Termos negativos:** `No music, no melody, no rhythm, no voice` (assegura o caráter documental e evita a criação de estruturas harmônicas ou rítmicas artificiais).
+  - **Direcionamento acústico:** Foco em frequências graves ressonantes (`deep resonant guttural roar`, `booming vocalization`) para reproduzir o osso hioide amplificador característico dos bugios.
+
+---
+
+### 10. Onça-pintada (*Panthera onca*)
+
+- **Espécie / Som-alvo:** Onça-pintada (*Panthera onca*)
+- **Autor:** Lucas Fernandes Bezerra Melo
+- **Data:** 2026-09-28
+- **Ferramenta:** ElevenLabs Sound Effects
+- **Objetivo do Áudio:** Reproduzir o esturro característico e agressivo da onça-pintada em contexto territorial — uma sequência ritmada e áspera de rugidos curtos e graves que soam como respirações serradas e pesadas, mantendo a presença acústica de predador de topo no ambiente noturno da mata.
+- **Duração Gerada:** Takes de 10s e 30s (takes de esturro e ambiência de fundo)
+- **Prompt:**
+```text
+Naturalistic field recording extremely loud and harsh big cat territorial call. Jaguar esturro, a deep, rhythmic, sawing roar. Rough, highly raspy animalistic growls. A long, relentless, insistent sequence of rapid repeated heavy animal grunts like A rapid, continuous chain of deep "uh-uh-uh-uh". Dirty, gritty acoustic texture, pure predator bass frequencies. Faint night forest and fauna. Foley. No human voice, no coughing, no lion roar.
+```
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 445 / 450 (otimizado no limite do módulo).
+  - **Restrições / Termos negativos:** `No human voice, no coughing, no lion roar` (bloqueia o modelo de puxar para tosse humana ou para o rugido clássico de leão africano).
+  - **Direcionamento acústico:** Descrição onomatopeica e textural detalhada (`sawing roar`, `continuous chain of deep "uh-uh-uh-uh"`, `pure predator bass frequencies`) para ancorar o padrão motor específico do esturro neotropical.
+
+---
+
 Copie e preencha a estrutura abaixo para registrar novos prompts de efeitos sonoros:
 
 ```markdown
