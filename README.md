@@ -7,3 +7,13 @@ Quando a mata responde é uma coleção de efeitos sonoros criados com IA a part
 # 2. Organização da coleção
 
 O projeto é composto por arquivos de áudio e arquivos de metadados. Os arquivos de áudio são nomeados de acordo com o formato `[NUMERO]_[NOME_CIENTIFICO].WAV`. Os arquivos de metadados são nomeados de acordo com o formato `[NUMERO]_[NOME_CIENTIFICO].MD`. Ambos os tipos de arquivo são armazenados na raiz do projeto. Cada arquivo de áudio é acompanhado por um arquivo de metadados com o mesmo nome, mas com extensão `.MD`, que contém informações sobre a espécie, o autor, a data de geração, a ferramenta utilizada e o prompt utilizado para gerar o áudio. O arquivo de metadados também contém uma descrição do áudio e observações sobre o processo de geração.
+
+# 3. Ideação
+
+- abrir-o-leque — Partimos de possibilidades como trilhas sobre preservação, paisagens sonoras de habitats e efeitos de animais; isso nos ajudou a escolher a escuta da fauna como centro da coleção, embora tenha aberto caminhos demais para o tempo disponível.
+
+- afiar-o-eixo — Trocamos a ideia vaga de “sons da Mata Atlântica” por efeitos sonoros em que um animal ocupa o primeiro plano e o ambiente o situa; a dificuldade foi definir quanto som de fundo caberia sem tirar o foco do animal.
+
+- derrubar-a-ideia — Questionamos se os resultados seriam apenas áudios genéricos de floresta ou sons atribuídos a espécies sem base suficiente; por isso, passamos a exigir uma referência animal verificável e a descartar peças em que a música ou a ambiência encobrissem o efeito.
+
+- escutar-a-reuniao — Optamos por não utilizar esta skill porque a principal decisão da coleção não dependia de recuperar discussões longas ou identificar ideias abandonadas: o grupo chegou rapidamente a um acordo sobre trabalhar com efeitos sonoros de animais da Mata Atlântica. Preferimos registrar diretamente, no caderno de bordo, as alternativas consideradas — trilhas musicais, paisagens sonoras amplas e vocalizações isoladas — e os critérios que levaram à escolha de efeitos sonoros. Como o processo de definição foi breve e documentado durante a própria reunião, transcrever e processar a conversa acrescentaria pouco à tomada de decisão e consumiria tempo que o grupo direcionou para pesquisa das espécies, experimentação das ferramentas e comparação das gerações.
