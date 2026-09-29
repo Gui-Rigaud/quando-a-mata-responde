@@ -223,6 +223,62 @@ Medido com ffmpeg: loudness e true peak com `ebur128`; batidas detectadas na ban
 
 ---
 
+## Muriqui-do-sul (***Brachyteles arachnoides***)
+
+**Nenhum descarte de prompt registrado.**
+
+As gerações utilizadas para a peça final foram aprovadas após escuta e montagem. Não houve, durante o processo documentado, uma tentativa explicitamente rejeitada por um critério declarado que permita registrar um descarte sem reconstruir informações posteriormente.
+
+---
+
+---
+
+## Mutum-de-Alagoas (***Mitu mitu***)
+
+**4 abordagens de prompt registradas · 3 descartadas · 1 aproveitada como base para a geração final**
+
+### Geração 1 — tentativa de controlar a peça inteira 
+
+- **Intenção:** construir uma paisagem sonora completa da Mata Atlântica nordestina, com chamadas do mutum-de-Alagoas surgindo gradualmente até restar uma única vocalização, seguida pela ambiência da floresta.
+
+- **Problema encontrado:** o resultado não correspondia à vocalização desejada do mutum-de-Alagoas. O prompt tentava controlar simultaneamente a ambiência, a quantidade de chamadas e a progressão temporal da peça, sem produzir uma vocalização satisfatória para o sujeito principal.
+
+- **Decisão:** descartar a abordagem para a vocalização principal.
+
+- **O que aprendemos:** tentar descrever toda a composição em um único prompt reduziu o controle sobre o sujeito sonoro. A partir dessa tentativa, a vocalização passou a ser tratada separadamente da ambiência, permitindo que a montagem temporal fosse feita posteriormente.
+
+### Geração 2 — descrição acústica genérica 
+
+- **Intenção:** testar uma vocalização de ave grave, ressonante e oca, buscando aproximar a sonoridade do mutum por características acústicas.
+
+- **Problema encontrado:** o resultado ficou excessivamente grave, fechado e oco, afastando-se da sonoridade desejada para a vocalização.
+
+- **Decisão:** descartar.
+
+- **O que aprendemos:** descritores como `deep`, `low-pitched`, `booming` e `hollow` empurraram o modelo para uma sonoridade excessivamente fechada, sem garantir a identidade sonora desejada.
+
+### Geração 3 — vocalização excessivamente grave
+
+- **Intenção:** especificar diretamente a vocalização do mutum-de-Alagoas, incluindo três sílabas, tom grave e uma última sílaba mais forte.
+
+- **Problema encontrado:** o resultado ficou muito fechado e abafado. Na escuta, a vocalização chegou a lembrar um efeito artificial semelhante a um "zíper abrindo e fechando", em vez de uma vocalização natural de ave.
+
+- **Decisão:** descartar.
+
+- **O que aprendemos:** a concentração de descritores como `low`, `hollow`, `deep` e `rounded tone` condicionou excessivamente o modelo para uma sonoridade grave e fechada. A tentativa mostrou que era necessário reduzir a descrição do timbre e priorizar características mais simples da estrutura da vocalização.
+
+### Geração 4 — vocalização simplificada 
+
+- **Intenção:** testar uma vocalização com três notas claramente separadas, altura moderada e acento na nota final, evitando os descritores que haviam produzido os resultados abafados das gerações anteriores.
+
+- **Problema encontrado:** nenhum descarte registrado nesta abordagem.
+
+- **Decisão:** aproveitar a geração como base para a composição final.
+
+- **O que aprendemos:** características estruturais como `three clear vocal notes`, `moderate pitch` e `strong final note` deram ao modelo uma orientação mais controlada do que a descrição excessivamente detalhada do timbre utilizada anteriormente.
+
+---
+
 ## O que os processos juntos deixam ver
 
 - **Araponga:** 4 takes → 2. Descarte por **ausência de sinal em primeiro plano** (t1 vazio) e **falha de persistência temporal** (t4 disparando um único golpe isolado e silenciando pelo resto do áudio).
@@ -231,5 +287,9 @@ Medido com ffmpeg: loudness e true peak com `ebur128`; batidas detectadas na ban
 - **Beija-flor:** 4 takes → 3. Descarte mínimo, e por motivo de **estabilidade** (distância aparente oscilante), não de identidade.
 - **Anta:** 8 takes → 3. Descarte por **ausência do sujeito** (`ger1_t4`) e **troca de identidade** (`ger2_t4`, voz humana). A falha mais importante ficou nos mantidos: o assobio pedido não apareceu em nenhum take. A peça entrou na coleção pelo corpo do animal, não pelo chamado.
 - **Sapo-martelo:** 8 takes → 3. Descarte por **troca de identidade** (`ger1_t2`, trinado contínuo que soa como outro bicho). Os mantidos têm a identidade — a batida oca repetida —, mas falham em dois parâmetros: cadência ~2,5× mais rápida que a real, em rajadas, e altura mais aguda. É o primeiro caso da coleção em que a limitação dos mantidos pôde ser medida em número (pulsos por segundo), e não só percebida.
+- **Muriqui:** nenhum descarte registrado. O processo convergiu sem uma tentativa explicitamente rejeitada por critério declarado. A estratégia utilizada foi diferente das peças que tentaram gerar o sujeito e a ambiência simultaneamente: **vocalização e floresta foram geradas separadamente** e organizadas posteriormente na montagem. O controle passou a estar menos no prompt único e mais na relação entre as camadas.
+
+- **Mutum-de-Alagoas:** 4 abordagens → 3 descartadas. O processo mostrou uma mudança clara de estratégia: primeiro tentou-se descrever a peça inteira, depois uma característica acústica grave e, por fim, a estrutura da vocalização. As duas primeiras abordagens produziram resultados **fechados e abafados**, enquanto a abordagem final simplificou a descrição para notas claras, altura moderada e acento final. O caso mostra que, para uma espécie cuja vocalização não estava convergindo, **simplificar o timbre e descrever a estrutura** funcionou melhor do que acumular características acústicas.
+
 
 O contraste é o achado mais útil: mesmo prompt, mesma ferramenta e mesma configuração produzem densidades de descarte e modos de falha muito diferentes. Isso indica que **o volume e a natureza do descarte são informação sobre a espécie e sobre o prompt, não sobre a ferramenta**.
