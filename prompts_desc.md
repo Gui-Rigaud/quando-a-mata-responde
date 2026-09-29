@@ -212,6 +212,27 @@ Naturalistic field recording extremely loud and harsh big cat territorial call. 
 
 ---
 
+### 11. Anta (*Tapirus terrestris*)
+
+- **Espécie / Som-alvo:** Anta — deslocamento noturno e assobio de contato
+- **Autor:** Josias Netto
+- **Data:** 2026-09-29
+- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 30% · Loop desligado · Prompt enhancement desligado
+- **Objetivo do Áudio:** Traduzir o maior mamífero terrestre da América do Sul pelo descompasso entre corpo e voz: passos pesados na serrapilheira molhada, galhos quebrando e bufos graves, interrompidos por um assobio fino e descendente — o chamado de contato da espécie. O eixo da peça era essa inversão: o animal mais pesado da mata com voz de apito. É uma peça noturna, espaçada, perto da água, onde a anta forrageia.
+- **Duração Gerada:** 30s por geração (teto do módulo) · 2 gerações · 3 takes mantidos · peça final de 1:26
+- **Prompt:**
+```text
+Night Atlantic Forest near a stream, documentary field recording. Foreground: large tapir walking slowly, heavy footsteps crushing wet leaves, snapping twigs, deep snorting breaths, then a thin piercing high-pitched squeal sliding downward in pitch, about one second, repeated two or three times, sparse. Large mammal, not a bird, no birdsong. Background: quiet night, very faint sparse insects. No music, no melody, no rhythm, no voice.
+```
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 437 / 450
+  - **Referência bioacústica:** Hunsaker & Hahn (1965, *Animal Behaviour* 13:69–74) descrevem quatro sons em *T. terrestris*: guincho trêmulo (dor/medo), guincho deslizante curto (contato), estalos de língua (identificação) e bufo (ameaça). Gravações de campo noturnas registram assobios agudos descendentes como chamado de contato. Não há medições publicadas de frequência nem de duração do assobio; o `about one second` do prompt é estimativa.
+  - **Restrições / Termos negativos:** `No music, no melody, no rhythm, no voice`. `Large mammal, not a bird, no birdsong` reaproveita a lição do mico-leão-dourado: assobio agudo puxa o modelo para ave. `no rhythm` mantido para os passos não virarem batida. **Ausência deliberada de `no reverb`:** o assobio é um chamado de longa distância e o espaço da mata faz parte dele.
+  - **Termos evitados:** `hoofed` (puxaria para cavalo, parente próximo da anta) e a analogia de "freio de carro" usada pelo San Diego Zoo (puxaria para carro). `tapir` foi mantido como âncora; o binomial e "anta" não ajudam o modelo.
+  - **Descartes:** 8 takes gerados em 2 gerações, 3 mantidos, 2 descartados com critério declarado, 3 não baixados. Áudios em `descartes/anta/`, registro em `descartes/descartes.md`.
+
+---
+
 Copie e preencha a estrutura abaixo para registrar novos prompts de efeitos sonoros:
 
 ```markdown

@@ -21,7 +21,7 @@ Cada artefato traduz uma forma particular de presença animal — vocalizações
 
 ## 🎧 2. Catálogo da Coleção
 
-A coleção reúne 10 peças sonoras finalizadas e masterizadas, disponíveis no diretório [`collection/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection):
+A coleção reúne 11 peças sonoras finalizadas e masterizadas, disponíveis no diretório [`collection/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection):
 
 | # | Faixa | Espécie (*Nome científico*) | Autor | Ferramenta | Duração |
 |---|-------|-----------------------------|-------|------------|:-------:|
@@ -35,6 +35,7 @@ A coleção reúne 10 peças sonoras finalizadas e masterizadas, disponíveis no
 | **08** | [`08_mitumitu.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/08_mitumitu.wav) | Mutum-de-Alagoas (*Mitu mitu*) | João Ohashi | Adobe Firefly | `1:21` |
 | **09** | [`09_preguica.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/09_preguica.wav) | Preguiça-de-pescoço-largo (*Bradypus torquatus*) | Levi Serrano | ElevenLabs Sound Effects | `1:11` |
 | **10** | [`10_beijaflorpreto.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/10_beijaflorpreto.wav) | Beija-flor-preto (*Florisuga fusca*) | Levi Serrano | ElevenLabs Sound Effects | `1:24` |
+| **11** | [`11_anta.wav`](collection/11_anta.wav) | Anta (*Tapirus terrestris*) | Josias Netto | ElevenLabs Sound Effects | `1:26` |
 
 ---
 
@@ -45,18 +46,20 @@ quando-a-mata-responde/
 ├── collection/               # Peças finais montadas e masterizadas (.wav)
 ├── generated/                # Takes brutos individuais aceitos (.wav / .mp3)
 ├── descartes/                # Áudios descartados, critérios e medições espectrais
+│   ├── anta/                 # Takes descartados da anta
 │   ├── araponga/             # Takes descartados da araponga
 │   ├── beija_flor_preto/     # Takes descartados do beija-flor-preto
 │   ├── preguica/             # Takes descartados da preguiça
 │   ├── sabiauna/             # Takes descartados do sabiá-una
 │   ├── descartes.md          # Registro analítico dos descartes e lições de escuta
 │   └── medidas_espectrais.csv# Métricas acústicas (centróide, RMS, pico, % energia)
+├── juntar_takes.sh           # Montagem: nivela takes, emenda com crossfade e masteriza
 ├── prompts_desc.md           # Registro detalhado de prompts, parâmetros e metadados
 └── README.md                 # Documentação geral do projeto
 ```
 
 ### Detalhamento das Camadas:
-- **[`collection/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection)**: Contém os 10 artefatos finais no formato `[NUMERO]_[NOME_DA_ESPECIE].wav`. Representa as obras compostas através de sobreposição, *crossfades* e montagem temporal dos takes aprovados.
+- **[`collection/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection)**: Contém os 11 artefatos finais no formato `[NUMERO]_[NOME_DA_ESPECIE].wav`. Representa as obras compostas através de sobreposição, *crossfades* e montagem temporal dos takes aprovados.
 - **[`generated/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/generated)**: Contém todos os takes brutos que foram aprovados nas sessões generativas para servirem de matéria-prima para a montagem final.
 - **[`descartes/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/descartes)**: Centraliza os áudios rejeitados na curadoria e a documentação completa dos critérios de descarte ([`descartes/descartes.md`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/descartes/descartes.md)), acompanhada por análises bioacústicas e espectrais ([`descartes/medidas_espectrais.csv`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/descartes/medidas_espectrais.csv)).
 - **[`prompts_desc.md`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/prompts_desc.md)**: Centraliza a especificação de engenharia de prompt para cada espécie: contagem de caracteres, termos negativos (`no music, no rhythm`), modelagem espacial e notas sobre iterações.

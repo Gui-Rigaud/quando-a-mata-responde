@@ -6,7 +6,7 @@ A distinção que importa: **selecionar pelo eixo** é descartar porque o take f
 
 ## Escopo
 
-Cobre as quatro espécies com descarte registrado: **araponga** (2 descartados), **sabiá-una** (2 descartados), **preguiça-de-pescoço-largo** (8 descartados) e **beija-flor-preto** (1 descartado). As demais peças da coleção ainda não têm registro de descarte.
+Cobre as cinco espécies com descarte registrado: **araponga** (2 descartados), **sabiá-una** (2 descartados), **preguiça-de-pescoço-largo** (8 descartados), **beija-flor-preto** (1 descartado) e **anta** (2 descartados). As demais peças da coleção ainda não têm registro de descarte.
 
 ## Convenções de nome
 
@@ -138,11 +138,57 @@ Aqui, ao contrário da preguiça, o nível **é** um indicador útil: o take des
 
 ---
 
+## Anta (*Tapirus terrestris*)
+
+**8 takes gerados · 2 gerações de 4 · 3 mantidos em `generated/` · 2 descartados em `descartes/anta/` · 3 não baixados**
+
+Mapeamento dos mantidos: `ger1_t1` → `anta_1`, `ger1_t2` → `anta_2`, `ger2_t1` → `anta_3`.
+
+Os 3 takes restantes (`ger1_t3`, `ger2_t2`, `ger2_t3`) não foram salvos e o motivo não foi anotado na hora. Ficam fora deste registro, que só cobre descarte com critério declarado.
+
+### Geração 1 — 1 de 4 descartado
+
+Descartado: `anta_ger1_t4.wav`
+
+- **Intenção:** anta andando devagar à noite perto de um riacho — passos pesados, galhos, bufos — com um assobio agudo e descendente repetido duas ou três vezes.
+- **Problema encontrado:** `t4` — **descartado.** A anta está ausente. O take é praticamente só ambiência noturna, com poucos eventos curtos e fracos (≈2,7 s, ≈3,6 s, ≈10,5 s e ≈21 s).
+- **Decisão:** descartar por ausência do sujeito.
+- **O que aprendemos:** é o mesmo modo de falha do `araponga_ger1_t1`: o modelo entrega o `Background:` e esquece o `Foreground:`. Aparece em espécies e prompts diferentes, então é um risco do módulo, não da anta.
+
+### Geração 2 — 1 de 4 descartado
+
+Descartado: `anta_ger2_t4.wav`
+
+- **Intenção:** segunda geração com o mesmo prompt e a mesma configuração, sem ajuste.
+- **Problema encontrado:** `t4` — **descartado.** O take simula um ruído que soa mais como voz humana do que como animal. Todos os eventos ficam entre 3 e 15 s; de 15 a 30 s só resta ambiência.
+- **Decisão:** descartar por troca de identidade (voz humana no lugar do animal).
+- **O que aprendemos:** `no voice` estava no prompt e não impediu. Hipótese: a vocalização pedida (`squeal`) é o trecho do prompt mais próximo de voz, e quando o modelo tentou vocalizar, puxou para humano. Junto com os takes mantidos — nenhum tem o assobio —, a geração 2 sugere que o modelo não tem um som de anta para ancorar: ou omite o chamado, ou o troca por voz.
+
+### Medição
+
+Medido com ffmpeg (`ebur128` para loudness e true peak, `astats` para RMS, mix mono).
+
+| Take | Situação | Loudness integrada | True peak | RMS |
+|---|---|---:|---:|---:|
+| `anta_1` (`ger1_t1`) | mantido | −34,9 LUFS | −8,2 dBTP | −39,7 dB |
+| `anta_2` (`ger1_t2`) | mantido | −23,0 LUFS | +0,3 dBTP | −30,8 dB |
+| `anta_3` (`ger2_t1`) | mantido | −41,3 LUFS | −18,7 dBTP | −48,6 dB |
+| `anta_ger1_t4` | descartado | −45,3 LUFS | −19,2 dBTP | −52,5 dB |
+| `anta_ger2_t4` | descartado | −35,0 LUFS | −8,3 dBTP | −42,5 dB |
+
+- `anta_ger1_t4` é o take **mais baixo do conjunto**, coerente com "anta ausente" — como no `araponga_ger1_t1`, o nível serve de indicador.
+- `anta_ger2_t4` **não se separa dos mantidos pelo nível** (−35,0 LUFS, praticamente igual ao `anta_1`). O que o separa é perceptivo (voz) e temporal (metade final vazia). Mesma conclusão da preguiça: o nível não sustenta esse descarte.
+- `anta_2` passa de 0 dBTP (+0,3) sem clipar na amostra (pico de amostra −0,8 dBFS): estouro só na reconstrução do sinal, corrigido pelo limitador da montagem.
+- Nos espectrogramas dos 5 takes não há traço tonal descendente — os eventos são faixas verticais de banda larga (passos, galhos, respiração). Confirmado na escuta: **o assobio não aparece em nenhum take**, nem nos mantidos.
+
+---
+
 ## O que os processos juntos deixam ver
 
 - **Araponga:** 4 takes → 2. Descarte por **ausência de sinal em primeiro plano** (t1 vazio) e **falha de persistência temporal** (t4 disparando um único golpe isolado e silenciando pelo resto do áudio).
 - **Sabiá-una:** 4 takes → 2. Descarte por **distorção/clipagem digital** (t4 atingindo 0 dBFS com achatamento de onda) e **aglomeração contínua sem pausas naturais** (t3 gerando bloco ininterrupto de 8 s).
 - **Preguiça:** 12 takes → 4. O caminho foi de *contínuo* para *discreto*, e de *agudo genérico* para *voz identificável*. A peça final é a mais lenta e a mais espaçada da coleção — que é o que uma preguiça é.
 - **Beija-flor:** 4 takes → 3. Descarte mínimo, e por motivo de **estabilidade** (distância aparente oscilante), não de identidade.
+- **Anta:** 8 takes → 3. Descarte por **ausência do sujeito** (`ger1_t4`) e **troca de identidade** (`ger2_t4`, voz humana). A falha mais importante ficou nos mantidos: o assobio pedido não apareceu em nenhum take. A peça entrou na coleção pelo corpo do animal, não pelo chamado.
 
 O contraste é o achado mais útil: mesmo prompt, mesma ferramenta e mesma configuração produzem densidades de descarte e modos de falha muito diferentes. Isso indica que **o volume e a natureza do descarte são informação sobre a espécie e sobre o prompt, não sobre a ferramenta**.
