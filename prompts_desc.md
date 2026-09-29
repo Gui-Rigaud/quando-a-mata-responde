@@ -39,9 +39,9 @@ Naturalistic field recording, mountainous Atlantic Forest treetops, documentary 
 - **Espécie / Som-alvo:** Mico-leão-dourado
 - **Autor:** Alex Lacava
 - **Data:** 2026-09-27
-- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 25%
+- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 100%
 - **Objetivo do Áudio:** Traduzir em som a vocalização de trinado do mico-leão-dourado, em condição de close-mic dentro do dossel, sem reverberação de sala — como o animal se ouviria a poucos metros, não como uma gravação de campo documental. A vocalização foi descrita por especificação acústica (trinado curto e repetido, com contorno de pitch) e sintetizada a partir dessa descrição, sem nenhum arquivo de som de referência.
-- **Duração Gerada:** 30s por geração (teto do módulo) · 4 variações · 1 geração
+- **Duração Gerada:** 30s por geração (teto do módulo) · 8 variações · 2 gerações
 - **Prompt:**
 ```text
 Close-mic'd primate trill: a rapid burst of 8 very short whistles, each 0.1 seconds, rising then falling in pitch, thin and reedy. Small monkey, not a bird, no birdsong, no music, no melody. Dry Atlantic Forest canopy at dawn, no reverb. Sound effects foley, one-shot.
@@ -49,7 +49,7 @@ Close-mic'd primate trill: a rapid burst of 8 very short whistles, each 0.1 seco
 - **Observações e Ajustes:**
   - **Contagem de caracteres:** 268 / 450
   - **Restrições / Termos negativos:** `no birdsong` (barra o erro mais comum do modelo, que puxa para pássaro), `no music, no melody` (identidade sonora da coleção), `no reverb` (close-mic, sem sala), `one-shot` (pedido de disparo único, sem loop).
-  - **Iterações / Ajustes realizados:** nenhuma regeração. As 4 variações foram aproveitadas integralmente: ordenadas por densidade de onsets (0,13 → 2,17 → 8,90 → 17,37 onsets/s) e montadas em 4 seções de 19,5 s cada, formando um arco que abre na tomada mais esparsa e fecha na mais densa. A peça final tem 1:18.
+  - **Iterações / Ajustes realizados:** As 4 primeiras variações estavam soando estranho, especifiquei mais o aspecto primata da caracterização, e o segundo lote de geração foi aproveitado integralmente; ordenadas por densidade de onsets (0,13 → 2,17 → 8,90 → 17,37 onsets/s) e montadas em 4 seções de 19,5 s cada, formando um arco que abre na tomada mais esparsa e fecha na mais densa. A peça final tem 1:18.
   - **Montagem:** crossfade de potência igual de 2 s nas costuras, masterização em −13,99 LUFS / true peak −3,44 dBTP, 44,1 kHz 16 bit estéreo.
 
 ---
@@ -59,7 +59,7 @@ Close-mic'd primate trill: a rapid burst of 8 very short whistles, each 0.1 seco
 - **Espécie / Som-alvo:** Saúvas carregadeiras
 - **Autor:** Alex Lacava
 - **Data:** 2026-09-27
-- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 25%
+- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 100%
 - **Objetivo do Áudio:** Traduzir o som da colônia de saúvas carregando folhas e terra no chão de mata úmida, em close-mic. O sujeito do som é o **coletivo**, não o indivíduo: o que se ouve é a raspagem massiva de milhares de corpos de inseto sobre a serrapilheira, sem passos individuais e sem compasso.
 - **Duração Gerada:** 30s por geração (teto do módulo) · 4 variações (1 duplicada) · 1 geração
 - **Prompt:**
