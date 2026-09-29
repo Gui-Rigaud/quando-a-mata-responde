@@ -39,9 +39,9 @@ Naturalistic field recording, mountainous Atlantic Forest treetops, documentary 
 - **Espécie / Som-alvo:** Mico-leão-dourado
 - **Autor:** Alex Lacava
 - **Data:** 2026-09-27
-- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 25%
+- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 100%
 - **Objetivo do Áudio:** Traduzir em som a vocalização de trinado do mico-leão-dourado, em condição de close-mic dentro do dossel, sem reverberação de sala — como o animal se ouviria a poucos metros, não como uma gravação de campo documental. A vocalização foi descrita por especificação acústica (trinado curto e repetido, com contorno de pitch) e sintetizada a partir dessa descrição, sem nenhum arquivo de som de referência.
-- **Duração Gerada:** 30s por geração (teto do módulo) · 4 variações · 1 geração
+- **Duração Gerada:** 30s por geração (teto do módulo) · 8 variações · 2 gerações
 - **Prompt:**
 ```text
 Close-mic'd primate trill: a rapid burst of 8 very short whistles, each 0.1 seconds, rising then falling in pitch, thin and reedy. Small monkey, not a bird, no birdsong, no music, no melody. Dry Atlantic Forest canopy at dawn, no reverb. Sound effects foley, one-shot.
@@ -49,7 +49,7 @@ Close-mic'd primate trill: a rapid burst of 8 very short whistles, each 0.1 seco
 - **Observações e Ajustes:**
   - **Contagem de caracteres:** 268 / 450
   - **Restrições / Termos negativos:** `no birdsong` (barra o erro mais comum do modelo, que puxa para pássaro), `no music, no melody` (identidade sonora da coleção), `no reverb` (close-mic, sem sala), `one-shot` (pedido de disparo único, sem loop).
-  - **Iterações / Ajustes realizados:** nenhuma regeração. As 4 variações foram aproveitadas integralmente: ordenadas por densidade de onsets (0,13 → 2,17 → 8,90 → 17,37 onsets/s) e montadas em 4 seções de 19,5 s cada, formando um arco que abre na tomada mais esparsa e fecha na mais densa. A peça final tem 1:18.
+  - **Iterações / Ajustes realizados:** As 4 primeiras variações estavam soando estranho, especifiquei mais o aspecto primata da caracterização, e o segundo lote de geração foi aproveitado integralmente; ordenadas por densidade de onsets (0,13 → 2,17 → 8,90 → 17,37 onsets/s) e montadas em 4 seções de 19,5 s cada, formando um arco que abre na tomada mais esparsa e fecha na mais densa. A peça final tem 1:18.
   - **Montagem:** crossfade de potência igual de 2 s nas costuras, masterização em −13,99 LUFS / true peak −3,44 dBTP, 44,1 kHz 16 bit estéreo.
 
 ---
@@ -59,7 +59,7 @@ Close-mic'd primate trill: a rapid burst of 8 very short whistles, each 0.1 seco
 - **Espécie / Som-alvo:** Saúvas carregadeiras
 - **Autor:** Alex Lacava
 - **Data:** 2026-09-27
-- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 25%
+- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 100%
 - **Objetivo do Áudio:** Traduzir o som da colônia de saúvas carregando folhas e terra no chão de mata úmida, em close-mic. O sujeito do som é o **coletivo**, não o indivíduo: o que se ouve é a raspagem massiva de milhares de corpos de inseto sobre a serrapilheira, sem passos individuais e sem compasso.
 - **Duração Gerada:** 30s por geração (teto do módulo) · 4 variações (1 duplicada) · 1 geração
 - **Prompt:**
@@ -115,6 +115,98 @@ Extreme close-mic'd hummingbird, dense Atlantic Forest understory, macro documen
   - **Nota de escuta:** o sintetizador não produz 50 kHz. A peça é uma tradução poética, não uma reprodução fiel — o limite é do modelo, não do prompt. Registrar como escolha assumida e não como falha esquecida.
   - **Contraponto à preguiça:** as duas peças também se opõem na densidade. `rapid irregular bursts` contra `sparse and irregular`; `near-absolute quiet` com silêncio como conteúdo contra silêncio como intervalo entre eventos. Loop desligado nas duas: na preguiça contradiria a própria especificação de irregularidade, e no beija-flor aplainaria o pico em vez de deixar o silêncio trabalhar.
   - **Descartes:** 4 takes gerados em 1 geração, 3 mantidos, 1 descartado por variação de distância aparente dentro do take. Áudio em `descartes/beija_flor_preto/`, registro em `descartes/descartes.md`.
+
+---
+
+### 7. Muriqui-do-sul (*Brachyteles arachnoides*)
+
+- **Espécie / Som-alvo:** Muriqui-do-sul
+- **Autor:** João Ohashi
+- **Data:** 2026-09-28
+- **Ferramenta:** Adobe Firefly · Gerar efeitos sonoros
+- **Objetivo do Áudio:** Construir uma paisagem acústica centrada na comunicação entre grupos de muriqui-do-sul no dossel da Mata Atlântica. A peça parte da ideia de que a floresta não é apenas um cenário, mas um espaço de comunicação: os chamados aparecem inseridos no próprio ambiente e separados por momentos de escuta e distância.
+- **Duração Gerada:** ~25s por geração (limite do módulo) · 2 gerações principais + complementação (chatgpt) · composição final de 1:00
+- **Prompt:**
+
+```text
+[Camada Ambiência] Dense humid Atlantic Forest in southeastern Brazil at dawn, native Atlantic Forest vegetation, realistic natural field recording, subtle forest ambience, no music, no humans, no urban sounds.
+
+[Camada Vocalização] Two groups of southern muriqui monkeys (Brachyteles arachnoides) communicating across the canopy, realistic wildlife recording, natural monkey vocalizations, distant calls between groups, dense Atlantic Forest, no music, no humans, no urban sounds.
+```
+
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 215 / 252 caracteres (prompts curtos mantidos para evitar dispersão do modelo).
+  - **Restrições / Termos negativos:** `no music, no humans, no urban sounds` (impede elementos externos à paisagem e evita transformar o som em trilha sonora).
+  - **Iterações / Ajustes realizados:** A floresta e a vocalização foram geradas separadamente para permitir o controle da presença do ambiente sem cobrir o som do animal.
+  - **Montagem:** Elementos unidos com transições suaves mantendo a ambiência no início e fim. Composição final ajustada para 1:00 exato.
+  - **Nota de escuta:** Reconstrução generativa por IA para traduzir a ideia de comunicação entre grupos, e não uma gravação documental autêntica.
+
+--- 
+
+### 8. Mutum-de-Alagoas (*Mitu mitu*)
+
+* **Espécie / Som-alvo:** Mutum-de-Alagoas (Mitu Mitu)
+* **Autor:** João Ohashi
+* **Data:** 2026-09-28
+* **Ferramenta:** Adobe Firefly · Gerar efeitos sonoros
+* **Objetivo do Áudio:** Construir uma peça sobre presença, desaparecimento e ausência a partir da vocalização do mutum-de-Alagoas. Diferentemente do muriqui, em que o som representa comunicação entre indivíduos, aqui a vocalização é tratada como um evento isolado dentro da floresta, criando uma progressiva sensação de rarefação e silêncio.
+* **Duração Gerada:** 30s por geração · 4 arquivos selecionados · composição final de 1:22
+* **Prompt:**
+
+```text
+[Vocalização 1] Mitu mitu bird vocalization, natural bird call, clear open sound, short repeated notes, organic animal voice, realistic wildlife recording.
+
+[Vocalização 2] Mitu mitu bird call, three clear vocal notes, open natural voice, moderate pitch, soft first two notes, strong final note, realistic bird vocalization.
+
+[Ambiência 1] Dense Atlantic Forest vegetation moving gently in a humid breeze, leaves and branches softly brushing against each other, realistic close natural field recording, northeastern Brazilian Atlantic Forest, no animals, no humans, no music.
+
+[Ambiência 2] Dense humid Atlantic Forest in northeastern Brazil at dawn, native Atlantic Forest vegetation, realistic natural field recording, no music, no humans, no urban sounds.
+```
+
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 143 a 248 caracteres por prompt (foco na identificação da espécie e clareza acústica).
+  - **Restrições / Termos negativos:** `no music, no humans, no urban sounds` e `no animals` (na camada de vento/folhas, para evitar competição com o sujeito principal).
+  - **Iterações / Ajustes realizados:** Primeiras tentativas resultaram em sons muito abafados/graves. O prompt foi reescrito trocando termos obscuros por `clear`, `open`, `moderate pitch` e `three clear vocal notes`.
+  - **Montagem:** Combinação dos 4 arquivos (ambiente → vocalizações → retorno ao ambiente) totalizando 1:22.
+  - **Nota de escuta / Contraponto:** Reconstrução generativa poética sobre a presença de uma espécie extinta na natureza. Em contraste com a comunicação contínua do muriqui, o mutum é marcado pelo isolamento do chamado e pelo silêncio subsequente.
+
+---
+
+### 9. Bugio-ruivo (*Alouatta guariba*)
+
+- **Espécie / Som-alvo:** Bugio-ruivo (*Alouatta guariba*)
+- **Autor:** Lucas Fernandes Bezerra Melo
+- **Data:** 2026-09-28
+- **Ferramenta:** ElevenLabs Sound Effects
+- **Objetivo do Áudio:** Simular a potente vocalização gutural e territorial do bugio-ruivo ecoando pelo alto dossel da Mata Atlântica ao amanhecer, mantendo a dinâmica e a ressonância cavernosa natural da espécie.
+- **Duração Gerada:** 30s por geração · 2 takes geradas (`bugio_ruivo_1.wav` e `bugio_ruivo_2.wav`)
+- **Prompt:**
+```text
+Naturalistic field recording, high Atlantic Forest canopy at dawn, documentary style. Foreground: deep resonant guttural roar of a male brown howler monkey (Alouatta guariba), loud booming vocalization echoing through trees, long low-frequency growls and barks with natural pauses. Background: faint humid breeze, distant canopy ambience, soft leaves rustling. No music, no melody, no rhythm, no voice.
+```
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 389 / 450
+  - **Restrições / Termos negativos:** `No music, no melody, no rhythm, no voice` (assegura o caráter documental e evita a criação de estruturas harmônicas ou rítmicas artificiais).
+  - **Direcionamento acústico:** Foco em frequências graves ressonantes (`deep resonant guttural roar`, `booming vocalization`) para reproduzir o osso hioide amplificador característico dos bugios.
+
+---
+
+### 10. Onça-pintada (*Panthera onca*)
+
+- **Espécie / Som-alvo:** Onça-pintada (*Panthera onca*)
+- **Autor:** Lucas Fernandes Bezerra Melo
+- **Data:** 2026-09-28
+- **Ferramenta:** ElevenLabs Sound Effects
+- **Objetivo do Áudio:** Reproduzir o esturro característico e agressivo da onça-pintada em contexto territorial — uma sequência ritmada e áspera de rugidos curtos e graves que soam como respirações serradas e pesadas, mantendo a presença acústica de predador de topo no ambiente noturno da mata.
+- **Duração Gerada:** Takes de 10s e 30s (takes de esturro e ambiência de fundo)
+- **Prompt:**
+```text
+Naturalistic field recording extremely loud and harsh big cat territorial call. Jaguar esturro, a deep, rhythmic, sawing roar. Rough, highly raspy animalistic growls. A long, relentless, insistent sequence of rapid repeated heavy animal grunts like A rapid, continuous chain of deep "uh-uh-uh-uh". Dirty, gritty acoustic texture, pure predator bass frequencies. Faint night forest and fauna. Foley. No human voice, no coughing, no lion roar.
+```
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 445 / 450 (otimizado no limite do módulo).
+  - **Restrições / Termos negativos:** `No human voice, no coughing, no lion roar` (bloqueia o modelo de puxar para tosse humana ou para o rugido clássico de leão africano).
+  - **Direcionamento acústico:** Descrição onomatopeica e textural detalhada (`sawing roar`, `continuous chain of deep "uh-uh-uh-uh"`, `pure predator bass frequencies`) para ancorar o padrão motor específico do esturro neotropical.
 
 ---
 
