@@ -1,19 +1,97 @@
-# quando-a-mata-responde
-Projeto Autoral da disciplina de Criatividade Computacional que consiste na tradução das características de espécies da biodiversidade da Mata Atlântica em artefatos sonoros
+# Quando a Mata Responde
 
-# 1. Eixo
-Quando a mata responde é uma coleção de efeitos sonoros criados com IA a partir de animais presentes na Mata Atlântica. Cada artefato procura traduzir uma forma particular de presença animal — como um canto, chamado ou outro sinal audível — em uma cena curta de escuta. A regra comum é que o animal seja o foco do som: o ambiente ajuda a situá-lo, mas não vira uma trilha musical nem encobre sua presença. Entre os artefatos, variam o animal, o tipo de som e o espaço acústico sugerido. Só entra na coleção uma peça cuja referência animal possa ser identificada e cuja sonoridade acrescente algo diferente ao conjunto; efeitos genéricos de floresta e peças sem vínculo verificável com o bioma ficam de fora.
+> **Coleção de Artefatos Sonoros da Biodiversidade da Mata Atlântica**  
+> *Projeto Autoral da disciplina de Criatividade Computacional (CIn/UFPE)*
 
-# 2. Organização da coleção
+---
 
-O projeto é composto por arquivos de áudio e arquivos de metadados. Os arquivos de áudio são nomeados de acordo com o formato `[NUMERO]_[NOME_CIENTIFICO].WAV`. Os arquivos de metadados são nomeados de acordo com o formato `[NUMERO]_[NOME_CIENTIFICO].MD`. Ambos os tipos de arquivo são armazenados na raiz do projeto. Cada arquivo de áudio é acompanhado por um arquivo de metadados com o mesmo nome, mas com extensão `.MD`, que contém informações sobre a espécie, o autor, a data de geração, a ferramenta utilizada e o prompt utilizado para gerar o áudio. O arquivo de metadados também contém uma descrição do áudio e observações sobre o processo de geração.
+## 🌿 1. Eixo Poético e Curatorial
 
-# 3. Ideação
+**Quando a Mata Responde** é uma coleção de efeitos sonoros concebida e sintetizada com ferramentas de Inteligência Artificial generativa, tendo como matéria-prima espécies emblemáticas da fauna da **Mata Atlântica**.
 
-- abrir-o-leque — Partimos de possibilidades como trilhas sobre preservação, paisagens sonoras de habitats e efeitos de animais; isso nos ajudou a escolher a escuta da fauna como centro da coleção, embora tenha aberto caminhos demais para o tempo disponível.
+Cada artefato traduz uma forma particular de presença animal — vocalizações territoriais, cantos de acasalamento, trinados, esturros ou a movimentação mecânica de uma colônia — em uma cena curta de escuta atenta.
 
-- afiar-o-eixo — Trocamos a ideia vaga de “sons da Mata Atlântica” por efeitos sonoros em que um animal ocupa o primeiro plano e o ambiente o situa; a dificuldade foi definir quanto som de fundo caberia sem tirar o foco do animal.
+### Princípios do Eixo:
+- **O animal como protagonista (*Foreground*):** O sujeito animal ocupa obrigatoriamente o primeiro plano acústico. A ambiência da floresta atua como situador espacial sutil, sem se transformar em trilha musical ou encobrir a assinatura sonora da espécie.
+- **Referência bioacústica verificável:** Não entram efeitos genéricos de "som de selva" ou paisagens abstratas sem vínculo comprovado com o comportamento e a morfologia das espécies do bioma.
+- **Diversidade tímbrica e espacial:** A coleção explora contrastes extremos de escala — do *close-mic* microscópico e seco (saúvas, beija-flor) à reverberação de copas montanhosas e dosséis profundos (araponga, bugio, muriqui).
+- **Seleção por critérios declarados:** Cada peça finalizada é fruto de uma triagem rigorosa entre takes gerados, distinguindo claramente descarte técnico/conceitual por falha no eixo de rejeição por gosto subjetivo.
 
-- derrubar-a-ideia — Questionamos se os resultados seriam apenas áudios genéricos de floresta ou sons atribuídos a espécies sem base suficiente; por isso, passamos a exigir uma referência animal verificável e a descartar peças em que a música ou a ambiência encobrissem o efeito.
+---
 
-- escutar-a-reuniao — Optamos por não utilizar esta skill porque a principal decisão da coleção não dependia de recuperar discussões longas ou identificar ideias abandonadas: o grupo chegou rapidamente a um acordo sobre trabalhar com efeitos sonoros de animais da Mata Atlântica. Preferimos registrar diretamente, no caderno de bordo, as alternativas consideradas — trilhas musicais, paisagens sonoras amplas e vocalizações isoladas — e os critérios que levaram à escolha de efeitos sonoros. Como o processo de definição foi breve e documentado durante a própria reunião, transcrever e processar a conversa acrescentaria pouco à tomada de decisão e consumiria tempo que o grupo direcionou para pesquisa das espécies, experimentação das ferramentas e comparação das gerações.
+## 🎧 2. Catálogo da Coleção
+
+A coleção reúne 10 peças sonoras finalizadas e masterizadas, disponíveis no diretório [`collection/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection):
+
+| # | Faixa | Espécie (*Nome científico*) | Autor | Ferramenta | Duração |
+|---|-------|-----------------------------|-------|------------|:-------:|
+| **01** | [`01_mico_leao_dourado.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/01_mico_leao_dourado.wav) | Mico-leão-dourado (*Leontopithecus rosalia*) | Alex Lacava | ElevenLabs Sound Effects | `1:18` |
+| **02** | [`02_sauvas_carregadoras.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/02_sauvas_carregadoras.wav) | Saúvas carregadeiras (*Atta* sp.) | Alex Lacava | ElevenLabs Sound Effects | `1:24` |
+| **03** | [`03_araponga.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/03_araponga.wav) | Araponga (*Procnias nudicollis*) | Guilherme Rigaud | ElevenLabs Sound Effects | `0:57` |
+| **04** | [`04_sabiauna.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/04_sabiauna.wav) | Sabiá-Una (*Turdus flavipes*) | Guilherme Rigaud | ElevenLabs Sound Effects | `0:57` |
+| **05** | [`05_oncapintada.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/05_oncapintada.wav) | Onça-pintada (*Panthera onca*) | Lucas Melo | ElevenLabs Sound Effects | `0:57` |
+| **06** | [`06_bugioruivo.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/06_bugioruivo.wav) | Bugio-ruivo (*Alouatta guariba*) | Lucas Melo | ElevenLabs Sound Effects | `0:57` |
+| **07** | [`07_muriqui.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/07_muriqui.wav) | Muriqui-do-sul (*Brachyteles arachnoides*) | João Ohashi | Adobe Firefly | `1:00` |
+| **08** | [`08_mitumitu.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/08_mitumitu.wav) | Mutum-de-Alagoas (*Mitu mitu*) | João Ohashi | Adobe Firefly | `1:21` |
+| **09** | [`09_preguica.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/09_preguica.wav) | Preguiça-de-pescoço-largo (*Bradypus torquatus*) | Levi Serrano | ElevenLabs Sound Effects | `1:11` |
+| **10** | [`10_beijaflorpreto.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/10_beijaflorpreto.wav) | Beija-flor-preto (*Florisuga fusca*) | Levi Serrano | ElevenLabs Sound Effects | `1:24` |
+
+---
+
+## 📁 3. Organização do Repositório
+
+```text
+quando-a-mata-responde/
+├── collection/               # Peças finais montadas e masterizadas (.wav)
+├── generated/                # Takes brutos individuais aceitos (.wav / .mp3)
+├── descartes/                # Áudios descartados, critérios e medições espectrais
+│   ├── araponga/             # Takes descartados da araponga
+│   ├── beija_flor_preto/     # Takes descartados do beija-flor-preto
+│   ├── preguica/             # Takes descartados da preguiça
+│   ├── sabiauna/             # Takes descartados do sabiá-una
+│   ├── descartes.md          # Registro analítico dos descartes e lições de escuta
+│   └── medidas_espectrais.csv# Métricas acústicas (centróide, RMS, pico, % energia)
+├── prompts_desc.md           # Registro detalhado de prompts, parâmetros e metadados
+└── README.md                 # Documentação geral do projeto
+```
+
+### Detalhamento das Camadas:
+- **[`collection/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection)**: Contém os 10 artefatos finais no formato `[NUMERO]_[NOME_DA_ESPECIE].wav`. Representa as obras compostas através de sobreposição, *crossfades* e montagem temporal dos takes aprovados.
+- **[`generated/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/generated)**: Contém todos os takes brutos que foram aprovados nas sessões generativas para servirem de matéria-prima para a montagem final.
+- **[`descartes/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/descartes)**: Centraliza os áudios rejeitados na curadoria e a documentação completa dos critérios de descarte ([`descartes/descartes.md`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/descartes/descartes.md)), acompanhada por análises bioacústicas e espectrais ([`descartes/medidas_espectrais.csv`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/descartes/medidas_espectrais.csv)).
+- **[`prompts_desc.md`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/prompts_desc.md)**: Centraliza a especificação de engenharia de prompt para cada espécie: contagem de caracteres, termos negativos (`no music, no rhythm`), modelagem espacial e notas sobre iterações.
+
+---
+
+## 💡 4. Processo de Ideação e Decisões de Design
+
+O desenvolvimento conceitual e técnico do projeto seguiu as dinâmicas de ideação da disciplina:
+
+### 🔍 Abrir o leque
+- **Exploração:** Foram investigadas múltiplas abordagens no início do projeto, tais como trilhas musicais temáticas sobre preservação ambiental, paisagens sonoras imersivas de ecossistemas inteiros e sintetização de vocalizações isoladas de fauna.
+- **Conclusão:** A amplitude inicial abriu caminhos diversos, mas permitiu ao grupo identificar que a maior potência expressiva residia na **escuta focada e singular da fauna**, transformando animais específicos no centro acústico de cada artefato.
+
+### 🎯 Afiar o eixo
+- **Refinamento:** Substituiu-se a noção vaga e difusa de "sons da Mata Atlântica" por uma regra curatorial estrita: **o animal no primeiro plano absoluto (*foreground*) e o ambiente como contexto espacial delimitador (*background*)**.
+- **Desafio:** Calibrar a relação sinal/ruído entre a presença do sujeito e a ambiência da mata, garantindo que o som da floresta situasse a cena sem competir em intensidade ou mascarar as frequências da espécie.
+
+### 🚫 Derrubar a ideia
+- **Filtro crítico:** Foi questionado se os resultados gerados por IA correriam o risco de soar como áudios genéricos de biblioteca de foley ou representações estereotipadas sem respaldo biológico.
+- **Diretriz:** Estabeleceu-se a obrigatoriedade de correspondência bioacústica verificável com a espécie alvo. Foram eliminadas texturas musicais e descartados todos os takes em que o fundo sonoro, artefatos de compressão ou melodias artificiais comprometessem o foco do artefato.
+
+### 🤝 Escutar a reunião
+- **Decisão metodológica:** Optou-se por não utilizar formalmente esta skill de recuperação de atas porque o grupo alcançou alinhamento rápido e unânime logo na primeira sessão de planejamento.
+- **Aplicação de esforço:** O registro das alternativas consideradas (trilhas vs. soundscapes vs. foley animal) e os critérios de escolha foram documentados diretamente no repositório. O tempo foi canalizado para a pesquisa taxonômica, experimentação iterativa de prompts, análise espectral e curadoria de descartes.
+
+---
+
+## 🔬 5. Engenharia de Prompts e Síntese Acústica
+
+Para assegurar fidelidade aos sinais bioacústicos e evitar vícios comuns de modelos generativos de áudio (como a introdução inadvertida de melodias musicais, compassos rítmicos ou vozes humanas), foram adotadas estratégias estruturantes:
+
+1. **Termos Negativos Estruturantes:** Inclusão sistemática de diretivas de supressão (`No music, no melody, no rhythm, no voice, no instruments, no reverb`).
+2. **Esvaziamento Ativo de Background:** Especificação de silêncios e fundos esparsos (`mostly empty darkness between calls`, `faint high canopy air`) para impedir o surgimento de "paredes de ruído" (*noise walls*).
+3. **Modelagem Temporal e Dinâmica:** Especificação da duração dos eventos e pausas naturais (`bursts of 3-4s`, `natural pauses 4-5s`, `sparse and irregular timing`).
+4. **Ancoragem Tímbrica por Analogias Físicas:** Uso de descritores materiais quando o nome taxonômico não ancora o som no modelo (ex.: `sharp metallic clang like hammer striking anvil` para Araponga; `granular scrape of thousands of small bodies` para Saúvas).
+
+Para a documentação completa dos prompts e especificações de cada espécie, consulte [prompts_desc.md](file:///home/vtex-lab-ufpe/quando-a-mata-responde/prompts_desc.md).

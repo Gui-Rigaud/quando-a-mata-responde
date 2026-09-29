@@ -16,6 +16,7 @@ Naturalistic field recording, dense Atlantic Forest at dawn, documentary style. 
 - **Observações:**
   - **Tamanho:** 322 caracteres (respeitando o limite de 450 caracteres do ElevenLabs Sound Effects).
   - **Direcionamento acústico:** Inclusão de termos negativos (`No music, no melody, no rhythm, no voice, no loop point`) para suprimir cadências rítmicas ou harmonias musicais artificiais, preservando o aspecto bruto de gravação documental de campo.
+  - **Descartes:** 4 takes gerados em 1 geração, 2 mantidos em `generated/` (`araponga_1.mp3`, `araponga_2.mp3`), 2 descartados (`araponga_ger1_t1.wav`, `araponga_ger1_t4.wav`) por ausência do sujeito e silenciamento prematuro. Áudios em `descartes/araponga/`, registro em `descartes/descartes.md`.
 
 ---
 
@@ -31,6 +32,7 @@ Naturalistic field recording, mountainous Atlantic Forest treetops, documentary 
 - **Observações:**
   - **Tamanho:** 301 caracteres (dentro do limite de 450 caracteres).
   - **Direcionamento acústico:** Remoção de estruturas melódicas musicais (`No music, no melody structure, no instruments, no voice`) para focar exclusivamente na bioacústica natural da ave e na reverberação de copas de árvores.
+  - **Descartes:** 4 takes gerados em 1 geração, 2 mantidos em `generated/` (`sabiauna_1.mp3`, `sabiauna_2.mp3`), 2 descartados (`sabiauna_ger1_t3.wav`, `sabiauna_ger1_t4.wav`) por quebra de cadência/estridência contínua e clipagem digital. Áudios em `descartes/sabiauna/`, registro em `descartes/descartes.md`.
 
 ---
 

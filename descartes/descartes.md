@@ -6,18 +6,64 @@ A distinção que importa: **selecionar pelo eixo** é descartar porque o take f
 
 ## Escopo
 
-Cobre as duas espécies com descarte registrado: **preguiça-de-pescoço-largo** (8 descartados) e **beija-flor-preto** (1 descartado). As demais peças da coleção ainda não têm registro de descarte.
+Cobre as quatro espécies com descarte registrado: **araponga** (2 descartados), **sabiá-una** (2 descartados), **preguiça-de-pescoço-largo** (8 descartados) e **beija-flor-preto** (1 descartado). As demais peças da coleção ainda não têm registro de descarte.
 
 ## Convenções de nome
 
 ```
-preguica_ger<GERACAO>_t<TAKE>.wav
+<especie>_ger<GERACAO>_t<TAKE>.wav
 ```
 
 - `ger1`, `ger2`, `ger3` — a geração do prompt de onde o take veio.
 - `t1`–`t4` — o índice do take dentro daquela geração, como o ElevenLabs exportou.
 
 Nomes de origem preservados em `medidas_espectrais.csv`, coluna `file`.
+
+---
+
+## Araponga (*Procnias nudicollis*)
+
+**4 takes gerados · 1 geração · 2 mantidos em `generated/` · 2 descartados em `descartes/araponga/`**
+
+### Geração 1 — 2 de 4 descartados
+
+Descartados: `araponga_ger1_t1.wav` · `araponga_ger1_t4.wav`
+
+- **Intenção:** simular o chamado metálico e estridente da araponga macho (*sharp metallic clang like hammer striking anvil*), com golpes isolados a cada 5–8 segundos em primeiro plano sobre ambiência sutil de floresta.
+- **Problema encontrado:**
+  - `t1` — **descartado.** Ausência de sujeito em primeiro plano. O modelo gerou apenas ruído de fundo difuso em nível residual (RMS 0,0011 / −59,3 dB; pico de 3,5% / −29,1 dB), sem nenhum dos golpes metálicos característicos ao longo dos 30 s.
+  - `t4` — **descartado.** Falha de recorrência e dinâmica temporal. O take dispara uma única batida metálica aos ~2 s e entra em silêncio absoluto pelo restante da faixa (27,8 s contínuos de vazio), violando a diretriz de chamados periódicos espaçados (`isolated strikes every 5-8 seconds`).
+- **Decisão:** descartar `t1` por ausência da vocalização da espécie; descartar `t4` por silenciamento prematuro e abandono da cadência temporal.
+- **O que aprendemos:** a instrução de temporização irregular (`irregular timing`) pode ser interpretada pelo modelo como permissão para cessar a emissão sonora após o primeiro evento (*one-shot*). Em sons percussivos pontuais, a consistência de múltiplos eventos ao longo do take precisa ser verificada: `t2` e `t3` (mantidos como `araponga_1` e `araponga_2`) sustentaram os golpes distribuídos no tempo, enquanto `t1` e `t4` falharam em estabelecer o sujeito sonoro.
+
+### Medição
+
+- `araponga_ger1_t1.wav`: pico 3,49% (−29,1 dB) e RMS 0,0011 (−59,3 dB) — o take mais baixo e vazio do conjunto, confirmando a ausência do sujeito.
+- `araponga_ger1_t4.wav`: pico 16,49% (−15,7 dB) e RMS 0,0037 (−48,6 dB) — nível muito baixo devido ao silêncio prolongado pós-disparo.
+- Em contrapartida, os mantidos (`araponga_1` e `araponga_2`) sustentam picos entre 14,8% e 55,6% com RMS em −36,9 dB e −40,8 dB, refletindo a presença ativa dos golpes no plano principal.
+
+---
+
+## Sabiá-Una (*Turdus flavipes*)
+
+**4 takes gerados · 1 geração · 2 mantidos em `generated/` · 2 descartados em `descartes/sabiauna/`**
+
+### Geração 1 — 2 de 4 descartados
+
+Descartados: `sabiauna_ger1_t3.wav` · `sabiauna_ger1_t4.wav`
+
+- **Intenção:** obter frases assobiadas límpidas e brilhantes (3–4 s) com contorno de pitch variado e pausas naturais de 4–5 s no topo do dossel, mantendo fidelidade bioacústica sem virar melodia instrumental artificial.
+- **Problema encontrado:**
+  - `t3` — **descartado.** Quebra da estrutura temporal de frases e pausas, associada a estridência excessiva. O take apresenta uma sequência inicial densa (0–7 s), seguida por um vazio anômalo de 8 s (10–18 s) e encerra com um bloco contínuo e estridente de assobios ininterruptos nos últimos 8 s (22–30 s), desrespeitando os intervalos de respiração e acumulando 98,1% da energia acima de 4 kHz.
+  - `t4` — **descartado.** Saturação e clipagem digital severa. O sinal bate repetidamente no teto de 0 dBFS (*flat factor* de 5,26 dB) com RMS excessivamente alto (0,1325 / −17,6 dB), resultando em um som distorcido, áspero e abafado (centróide rebaixado para 2,7 kHz), incompatível com o timbre límpido e brilhante da ave.
+- **Decisão:** descartar `t3` por perda de cadência natural (parede contínua de assobios) e aspereza aguda; descartar `t4` por defeito técnico de saturação/clipagem digital.
+- **O que aprendemos:** manter frases separadas por pausas declaradas no prompt (`natural pauses 4-5 seconds between phrases`) é vulnerável à tendência do sintetizador de colar frases contíguas em cascata (como em `t3`) ou de empurrar o ganho até o limite do clipping quando tenta reforçar a presença do primeiro plano (como em `t4`). Os takes aceitos (`sabiauna_1` e `sabiauna_2`) conseguiram articular as frases com dinâmicas limpas (picos de −0,2 a −2,8 dBFS) sem distorcer o sinal.
+
+### Medição
+
+- `sabiauna_ger1_t4.wav`: pico de 100% (0 dBFS, clipagem detectada) e RMS de 0,1325 (−17,6 dB) — a medição evidencia saturação extrema e compressão/distorção por ganho excessivo.
+- `sabiauna_ger1_t3.wav`: centróide elevado (~5,0 kHz) e 98,1% de energia acima de 4 kHz, com dinâmica irregular e bloco final contínuo.
+- Os takes mantidos (`sabiauna_1` e `sabiauna_2`) operam em faixa dinâmica equilibrada (RMS ~0,056–0,061 e picos abaixo de 0 dBFS), preservando clareza tímbrica e espaçamento.
 
 ---
 
@@ -92,9 +138,11 @@ Aqui, ao contrário da preguiça, o nível **é** um indicador útil: o take des
 
 ---
 
-## O que os dois processos juntos deixam ver
+## O que os processos juntos deixam ver
 
+- **Araponga:** 4 takes → 2. Descarte por **ausência de sinal em primeiro plano** (t1 vazio) e **falha de persistência temporal** (t4 disparando um único golpe isolado e silenciando pelo resto do áudio).
+- **Sabiá-una:** 4 takes → 2. Descarte por **distorção/clipagem digital** (t4 atingindo 0 dBFS com achatamento de onda) e **aglomeração contínua sem pausas naturais** (t3 gerando bloco ininterrupto de 8 s).
 - **Preguiça:** 12 takes → 4. O caminho foi de *contínuo* para *discreto*, e de *agudo genérico* para *voz identificável*. A peça final é a mais lenta e a mais espaçada da coleção — que é o que uma preguiça é.
-- **Beija-flor:** 4 takes → 3. Descarte mínimo, e por motivo de **estabilidade** (distância), não de identidade.
+- **Beija-flor:** 4 takes → 3. Descarte mínimo, e por motivo de **estabilidade** (distância aparente oscilante), não de identidade.
 
-O contraste é o achado mais útil: mesmo prompt, mesma ferramenta e mesma configuração produzem densidades de descarte muito diferentes. Isso indica que **o volume de descarte é informação sobre a espécie e sobre o prompt, não sobre a ferramenta**.
+O contraste é o achado mais útil: mesmo prompt, mesma ferramenta e mesma configuração produzem densidades de descarte e modos de falha muito diferentes. Isso indica que **o volume e a natureza do descarte são informação sobre a espécie e sobre o prompt, não sobre a ferramenta**.
