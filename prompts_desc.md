@@ -233,6 +233,27 @@ Night Atlantic Forest near a stream, documentary field recording. Foreground: la
 
 ---
 
+### 12. Sapo-martelo (*Boana faber*)
+
+- **Espécie / Som-alvo:** Sapo-martelo (sapo-ferreiro) — canto de anúncio do macho
+- **Autor:** Josias Netto
+- **Data:** 2026-09-29
+- **Ferramenta:** ElevenLabs Sound Effects · Prompt influence 80% · Loop desligado · Prompt enhancement desligado
+- **Objetivo do Áudio:** Traduzir o canto de anúncio do sapo-martelo: batidas ocas e curtas, repetidas em sequência, que o macho emite de dentro da "panela" de barro que constrói na beira da água, à noite, na estação chuvosa. É o segundo "ferreiro" da coleção — o da poça, em diálogo com a araponga, o ferreiro da copa — e a primeira peça de anfíbio. Depois da anta, cuja identidade dependia do corpo, aqui a identidade está toda no chamado.
+- **Duração Gerada:** 30s por geração (teto do módulo) · 2 gerações · 3 takes mantidos · peça final de 1:26
+- **Prompt:**
+```text
+Night Atlantic Forest pond, documentary field recording. Foreground: one large tree frog calling from a mud nest at the water's edge, loud hollow knocking notes like a wooden mallet tapping a tin can, each very short, about two per second, in long runs with brief pauses. Frog call, not a bird, not a real hammer, no metal workshop. Background: still water, very faint sparse insects. No music, no melody, no voice.
+```
+- **Observações e Ajustes:**
+  - **Contagem de caracteres:** 415 / 450
+  - **Referência bioacústica:** canto de anúncio em nota pulsada de ~0,08 s, repetida 107–124 vezes por minuto (175 por minuto com a fêmea próxima), na faixa de 0,3 a 4 kHz; canto de combate entre machos em 0,1–2,1 kHz. Reprodução de dezembro a fevereiro. O macho molda com barro uma "panela" na beira de poças e canta de dentro dela. Não encontramos frequência dominante publicada.
+  - **Restrições / Termos negativos:** `No music, no melody, no voice`. `Frog call, not a bird` barra a leitura como ave; `not a real hammer, no metal workshop` barra a leitura literal do nome popular. **Ausência deliberada de `no rhythm`:** a repetição regular das batidas é o próprio canto — mesma lógica da ausência de `no birdsong` no beija-flor-preto.
+  - **Termos evitados:** `hammer` como descrição (só aparece negado). A analogia usada, `wooden mallet tapping a tin can`, vem das descrições da espécie ("pancada de martelo", "batida no fundo de uma lata"). `tree frog` foi usado como âncora; o binomial e "sapo-martelo" não ajudam o modelo.
+  - **Descartes:** 8 takes gerados em 2 gerações, 3 mantidos, 1 descartado com critério declarado, 4 não baixados. Áudio em `descartes/sapo_martelo/`, registro em `descartes/descartes.md`.
+
+---
+
 Copie e preencha a estrutura abaixo para registrar novos prompts de efeitos sonoros:
 
 ```markdown

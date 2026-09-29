@@ -6,7 +6,7 @@ A distinção que importa: **selecionar pelo eixo** é descartar porque o take f
 
 ## Escopo
 
-Cobre as cinco espécies com descarte registrado: **araponga** (2 descartados), **sabiá-una** (2 descartados), **preguiça-de-pescoço-largo** (8 descartados), **beija-flor-preto** (1 descartado) e **anta** (2 descartados). As demais peças da coleção ainda não têm registro de descarte.
+Cobre as seis espécies com descarte registrado: **araponga** (2 descartados), **sabiá-una** (2 descartados), **preguiça-de-pescoço-largo** (8 descartados), **beija-flor-preto** (1 descartado), **anta** (2 descartados) e **sapo-martelo** (1 descartado). As demais peças da coleção ainda não têm registro de descarte.
 
 ## Convenções de nome
 
@@ -183,6 +183,46 @@ Medido com ffmpeg (`ebur128` para loudness e true peak, `astats` para RMS, mix m
 
 ---
 
+## Sapo-martelo (*Boana faber*)
+
+**8 takes gerados · 2 gerações de 4 · 3 mantidos em `generated/` · 1 descartado em `descartes/sapo_martelo/` · 4 não baixados**
+
+Mapeamento dos mantidos: `ger1_t4` → `sapo_martelo_1`, `ger2_t3` → `sapo_martelo_2`, `ger2_t4` → `sapo_martelo_3`.
+
+Os 4 takes restantes (`ger1_t1`, `ger1_t3`, `ger2_t1`, `ger2_t2`) não foram salvos e o motivo não foi anotado na hora. Ficam fora deste registro, que só cobre descarte com critério declarado.
+
+### Geração 1 — 1 de 4 descartado
+
+Descartado: `sapo_martelo_ger1_t2.wav`
+
+- **Intenção:** um sapo-martelo cantando de dentro do ninho de barro — batidas ocas e curtas, cerca de duas por segundo, em sequências longas com pausas breves.
+- **Problema encontrado:** `t2` — **descartado.** Soa como outro bicho, sem parecer batidas. Os primeiros 13 s são duas rajadas contínuas de ~7 s (34 e 27 pulsos seguidos, sem pausa), sobre uma faixa de inseto forte e contínua em ~6,5 kHz; depois disso sobram pulsos soltos.
+- **Decisão:** descartar por troca de identidade.
+- **O que aprendemos:** pancada repetida rápido demais e sem pausa deixa de ser pancada e vira trinado — e trinado é outro animal. A fronteira entre as duas leituras é o intervalo entre pulsos, justamente o parâmetro que o modelo menos respeitou também nos takes mantidos (ver Medição).
+
+### Geração 2 — nenhum descarte registrado
+
+Mesmo prompt e mesma configuração. `t3` e `t4` mantidos; `t1` e `t2` não baixados.
+
+### Medição
+
+Medido com ffmpeg: loudness e true peak com `ebur128`; batidas detectadas na banda de 800–2500 Hz em janelas de 20 ms (limiar a meio caminho entre o piso mediano e o pico, intervalo mínimo de 0,15 s entre pulsos); pulsos separados por menos de 0,35 s contam como uma rajada.
+
+| Take | Situação | Loudness integrada | True peak | Rajadas por minuto | Pulsos por rajada (média / máx.) | Intervalo mediano entre rajadas |
+|---|---|---:|---:|---:|---:|---:|
+| `sapo_martelo_1` (`ger1_t4`) | mantido | −25,7 LUFS | −7,5 dBTP | 20 | 7,2 / 16 | 3,24 s |
+| `sapo_martelo_2` (`ger2_t3`) | mantido | −23,4 LUFS | −5,1 dBTP | 40 | 3,8 / 6 | 1,48 s |
+| `sapo_martelo_3` (`ger2_t4`) | mantido | −15,8 LUFS | 0,0 dBTP | 28 | 2,6 / 4 | 2,34 s |
+| `sapo_martelo_ger1_t2` | descartado | −25,2 LUFS | −10,8 dBTP | — | 34 e 27 nas duas primeiras | — |
+
+- **Rápido demais.** Dentro das rajadas, os pulsos vêm a cada ~0,18 s (mediana, nos quatro takes) — cerca de 5 por segundo, contra ~2 por segundo do canto real (107–124 por minuto). Como o detector não separa pulsos a menos de 0,15 s, o valor real pode ser ainda mais rápido. O modelo trocou a cadência regular pedida (`about two per second`) por rajadas rápidas separadas por pausas.
+- **Agudo demais.** Nos 3 mantidos a energia se concentra em 1,2–2,5 kHz; a faixa de 200–700 Hz fica 15 a 24 dB abaixo. Na escuta, o canto soa mais agudo que as gravações de referência. O prompt não pedia altura (`loud hollow knocking`) e o modelo resolveu no médio-agudo. Sem frequência dominante publicada, a comparação fica na escuta, não em número.
+- **A identidade ficou, com ressalvas.** Na escuta, os mantidos "parecem um pouco" o sapo-martelo: a batida oca repetida está lá, mas o ritmo e a altura não batem com o real.
+- `sapo_martelo_3` chega a 0,0 dBTP (pico de amostra −0,04 dBFS), sem clipagem (flat factor 0). O limitador da montagem resolve.
+- **Próxima tentativa:** pedir altura e cadência explicitamente — `deep, low-pitched knock` e `one knock every half second, steady, not in fast bursts`.
+
+---
+
 ## O que os processos juntos deixam ver
 
 - **Araponga:** 4 takes → 2. Descarte por **ausência de sinal em primeiro plano** (t1 vazio) e **falha de persistência temporal** (t4 disparando um único golpe isolado e silenciando pelo resto do áudio).
@@ -190,5 +230,6 @@ Medido com ffmpeg (`ebur128` para loudness e true peak, `astats` para RMS, mix m
 - **Preguiça:** 12 takes → 4. O caminho foi de *contínuo* para *discreto*, e de *agudo genérico* para *voz identificável*. A peça final é a mais lenta e a mais espaçada da coleção — que é o que uma preguiça é.
 - **Beija-flor:** 4 takes → 3. Descarte mínimo, e por motivo de **estabilidade** (distância aparente oscilante), não de identidade.
 - **Anta:** 8 takes → 3. Descarte por **ausência do sujeito** (`ger1_t4`) e **troca de identidade** (`ger2_t4`, voz humana). A falha mais importante ficou nos mantidos: o assobio pedido não apareceu em nenhum take. A peça entrou na coleção pelo corpo do animal, não pelo chamado.
+- **Sapo-martelo:** 8 takes → 3. Descarte por **troca de identidade** (`ger1_t2`, trinado contínuo que soa como outro bicho). Os mantidos têm a identidade — a batida oca repetida —, mas falham em dois parâmetros: cadência ~2,5× mais rápida que a real, em rajadas, e altura mais aguda. É o primeiro caso da coleção em que a limitação dos mantidos pôde ser medida em número (pulsos por segundo), e não só percebida.
 
 O contraste é o achado mais útil: mesmo prompt, mesma ferramenta e mesma configuração produzem densidades de descarte e modos de falha muito diferentes. Isso indica que **o volume e a natureza do descarte são informação sobre a espécie e sobre o prompt, não sobre a ferramenta**.

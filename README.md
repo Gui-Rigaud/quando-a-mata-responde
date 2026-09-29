@@ -21,7 +21,7 @@ Cada artefato traduz uma forma particular de presença animal — vocalizações
 
 ## 🎧 2. Catálogo da Coleção
 
-A coleção reúne 11 peças sonoras finalizadas e masterizadas, disponíveis no diretório [`collection/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection):
+A coleção reúne 12 peças sonoras finalizadas e masterizadas, disponíveis no diretório [`collection/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection):
 
 | # | Faixa | Espécie (*Nome científico*) | Autor | Ferramenta | Duração |
 |---|-------|-----------------------------|-------|------------|:-------:|
@@ -36,6 +36,7 @@ A coleção reúne 11 peças sonoras finalizadas e masterizadas, disponíveis no
 | **09** | [`09_preguica.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/09_preguica.wav) | Preguiça-de-pescoço-largo (*Bradypus torquatus*) | Levi Serrano | ElevenLabs Sound Effects | `1:11` |
 | **10** | [`10_beijaflorpreto.wav`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection/10_beijaflorpreto.wav) | Beija-flor-preto (*Florisuga fusca*) | Levi Serrano | ElevenLabs Sound Effects | `1:24` |
 | **11** | [`11_anta.wav`](collection/11_anta.wav) | Anta (*Tapirus terrestris*) | Josias Netto | ElevenLabs Sound Effects | `1:26` |
+| **12** | [`12_sapomartelo.wav`](collection/12_sapomartelo.wav) | Sapo-martelo (*Boana faber*) | Josias Netto | ElevenLabs Sound Effects | `1:26` |
 
 ---
 
@@ -51,6 +52,7 @@ quando-a-mata-responde/
 │   ├── beija_flor_preto/     # Takes descartados do beija-flor-preto
 │   ├── preguica/             # Takes descartados da preguiça
 │   ├── sabiauna/             # Takes descartados do sabiá-una
+│   ├── sapo_martelo/         # Takes descartados do sapo-martelo
 │   ├── descartes.md          # Registro analítico dos descartes e lições de escuta
 │   └── medidas_espectrais.csv# Métricas acústicas (centróide, RMS, pico, % energia)
 ├── juntar_takes.sh           # Montagem: nivela takes, emenda com crossfade e masteriza
@@ -59,7 +61,7 @@ quando-a-mata-responde/
 ```
 
 ### Detalhamento das Camadas:
-- **[`collection/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection)**: Contém os 11 artefatos finais no formato `[NUMERO]_[NOME_DA_ESPECIE].wav`. Representa as obras compostas através de sobreposição, *crossfades* e montagem temporal dos takes aprovados.
+- **[`collection/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/collection)**: Contém os 12 artefatos finais no formato `[NUMERO]_[NOME_DA_ESPECIE].wav`. Representa as obras compostas através de sobreposição, *crossfades* e montagem temporal dos takes aprovados.
 - **[`generated/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/generated)**: Contém todos os takes brutos que foram aprovados nas sessões generativas para servirem de matéria-prima para a montagem final.
 - **[`descartes/`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/descartes)**: Centraliza os áudios rejeitados na curadoria e a documentação completa dos critérios de descarte ([`descartes/descartes.md`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/descartes/descartes.md)), acompanhada por análises bioacústicas e espectrais ([`descartes/medidas_espectrais.csv`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/descartes/medidas_espectrais.csv)).
 - **[`prompts_desc.md`](file:///home/vtex-lab-ufpe/quando-a-mata-responde/prompts_desc.md)**: Centraliza a especificação de engenharia de prompt para cada espécie: contagem de caracteres, termos negativos (`no music, no rhythm`), modelagem espacial e notas sobre iterações.
