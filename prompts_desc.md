@@ -89,8 +89,9 @@ Night Atlantic Forest canopy, documentary field recording. Foreground: single sl
 - **Observações e Ajustes:**
   - **Contagem de caracteres:** 394 / 450
   - **Restrições / Termos negativos:** `no music, no melody, no rhythm, no voice`, `no reverb`. O `no reverb` é deliberado: o objetivo é preservar o pigarro grave do animal, não o espaço acústico. A sensação de distância é recuperada pela irregularidade (`sparse and irregular`, `mostly empty darkness between calls`), não pelo afastamento da fonte.
-  - **Iterações / Ajustes realizados:** 1 regeração. A primeira versão do prompt especificava `wide distant perspective` e `Background: dense night insects`. Ouvido o resultado, o insect wall mascarou o sujeito e a peça não foi reconhecível como preguiça. Reescrito para a versão acima: `wide distant perspective` → `prominent and close`, `dense night insects` → `very faint sparse insects`. Segunda geração e terceira geração foi aprovada sem alteração.
-  - **Nota de escuta:** a principal lição do processo. Numa mix de sound effects, uma cue de background densa é renderizada como camada densa e engole o foreground, por mais bem especificado que ele esteja. Quando há um sujeito a ser identificado, o background precisa ser esvaziado ativamente,  não basta removê-lo.
+  - **Iterações / Ajustes realizados:** 1 regeração de prompt, 3 gerações de áudio. A primeira versão do prompt especificava `wide distant perspective` e `Background: dense night insects`. Ouvido o resultado, o insect wall mascarou o sujeito e a peça não foi reconhecível como preguiça. Reescrito para a versão acima: `wide distant perspective` → `prominent and close`, `dense night insects` → `very faint sparse insects`. Gerações 2 e 3 mantiveram o prompt sem alteração — os problemas restantes eram de saída do modelo, não de prompt.
+  - **Nota de escuta:** a principal lição do processo. Numa mix de sound effects, uma cue de background densa é renderizada como camada densa e engole o foreground, por mais bem especificado que ele esteja. Quando há um sujeito a ser identificado, o background precisa ser esvaziado ativamente, não basta removê-lo.
+  - **Descartes:** 12 takes gerados em 3 gerações, 4 mantidos, 8 descartados. Áudios em `descartes/preguica/`, registro em `descartes/descartes.md`.
 
 ---
 
@@ -110,9 +111,10 @@ Extreme close-mic'd hummingbird, dense Atlantic Forest understory, macro documen
   - **Contagem de caracteres:** 388 / 450
   - **Restrições / Termos negativos:** `no music, no melody, no rhythm, no voice`, `no reverb`. **Ausência deliberada de `no birdsong`** — termo idêntico ao usado no mico-leão-dourado, onde bloqueia o modelo de puxar para ave genérico. Aqui o canto *é* birdsong, então suprimir o termo derrubaria a própria peça. O que barra o resultado de virar material melódico são `no music`, `no melody` e `no rhythm`.
   - **Nome científico omitido do prompt:** `Florisuga fusca` não é um beija-flor — é um jacamar (Galbulidae), parente do beija-bobo. Nem o binomial nem o nome popular português servem ao modelo. `hummingbird` foi usado deliberadamente como mentira acústica: é o token que ancora trilo agudo e fino, que é o que se quer.
-  - **Iterações / Ajustes realizados:** nenhuma. Aprovada na primeira geração.
-  - **Nota de escuta:** o sintetizador não produz 50 kHz. A peça é uma tradução poética, não uma reprodução fiel — o limite é do modelo, não do prompt.
-  - **Contraponto à preguiça:** as duas peças também se opõem na densidade. `rapid irregular bursts` contra `sparse and irregular`; `near-absolute quiet` com silêncio como conteúdo contra silêncio como intervalo entre eventos.
+  - **Iterações / Ajustes realizados:** nenhuma de prompt. 1 geração, 4 takes, 3 mantidos. O take descartado falhou em estabilidade de distância, não em identidade.
+  - **Nota de escuta:** o sintetizador não produz 50 kHz. A peça é uma tradução poética, não uma reprodução fiel — o limite é do modelo, não do prompt. Registrar como escolha assumida e não como falha esquecida.
+  - **Contraponto à preguiça:** as duas peças também se opõem na densidade. `rapid irregular bursts` contra `sparse and irregular`; `near-absolute quiet` com silêncio como conteúdo contra silêncio como intervalo entre eventos. Loop desligado nas duas: na preguiça contradiria a própria especificação de irregularidade, e no beija-flor aplainaria o pico em vez de deixar o silêncio trabalhar.
+  - **Descartes:** 4 takes gerados em 1 geração, 3 mantidos, 1 descartado por variação de distância aparente dentro do take. Áudio em `descartes/beija_flor_preto/`, registro em `descartes/descartes.md`.
 
 ---
 
