@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quando a Mata Responde</title>
+<meta name="description" content="Coleção de artefatos sonoros da biodiversidade da Mata Atlântica, gerados com IA. Projeto de Criatividade Computacional, CIn/UFPE.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,600;1,400&display=swap">
+<style>
+:root {
+  --noite: #0E1B14;
+  --folha: #E4EBE1;
+  --papel: #F4F7F2;
+  --tinta: #13251A;
+  --musgo: #56695B;
+  --liquen: #B7C6BA;
+  --nevoa: #9DB2A3;
+  --vagalume: #D7EE5C;
+  --serif: 'Spectral', Georgia, serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --margem: 7%;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--folha);
+  color: var(--tinta);
+  font: 400 1.125rem/1.55 var(--serif);
+}
+button { font: inherit; color: inherit; cursor: pointer; }
+svg { width: 1em; height: 1em; fill: currentColor; flex: none; }
+.i-pause { display: none; }
+body.tocando .on > svg .i-play { display: none; }
+body.tocando .on > svg .i-pause { display: inline; }
+:focus-visible { outline: 3px solid var(--vagalume); outline-offset: 2px; }
+.colecao :focus-visible { outline-color: var(--tinta); }
+.sci { font-style: italic; }
+
+/* Hero */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 3vh, 2.5rem);
+  padding-top: clamp(1rem, 4vh, 3.5rem);
+  background: var(--noite);
+  color: var(--folha);
+}
+.hero > * { margin: 0; padding-inline: var(--margem); }
+h1 {
+  font-weight: 300;
+  font-size: clamp(3rem, min(8.5vw, 14vh), 9rem);
+  line-height: .95;
+  letter-spacing: -0.03em;
+}
+h1 span { display: block; text-align: right; }
+.hero-corpo {
+  display: grid;
+  grid-template-columns: minmax(0, 48ch) auto;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1.5rem 3rem;
+}
+.hero-corpo p { margin: 0 0 .8rem; color: var(--nevoa); }
+.hero-corpo .intro { color: var(--folha); font-size: clamp(1.15rem, 1.6vw, 1.4rem); line-height: 1.5; }
+.creditos { font-size: .95rem; }
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  margin-bottom: .8rem;
+  padding: .85rem 1.7rem .85rem 1.3rem;
+  border-radius: 999px;
+  background: var(--vagalume);
+  color: var(--noite);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.hero figure { margin-top: auto; padding: 0; }
+.hero img {
+  display: block;
+  width: 100%;
+  height: clamp(6rem, 18vh, 15rem);
+  object-fit: cover;
+  mix-blend-mode: screen;
+}
+.hero figcaption { padding: .5rem var(--margem) 1rem; color: var(--nevoa); font-size: .85rem; }
+
+/* Coleção: índice + carrossel */
+.colecao {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  padding-block: clamp(1rem, 2.5vw, 2rem);
+}
+.topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 2rem;
+  padding-inline: var(--margem);
+}
+.topo h2 { margin: 0; font-size: 2rem; font-weight: 600; line-height: 1.1; }
+.dica { margin: .2rem 0 0; color: var(--musgo); font-size: .95rem; }
+.dica-toque { display: none; }
+.indice { display: flex; align-items: center; gap: .5rem; }
+.indice ol { display: flex; flex-wrap: wrap; gap: .2rem; margin: 0; padding: 0; list-style: none; }
+.indice button {
+  display: grid;
+  place-items: center;
+  min-width: 2.4rem;
+  height: 2.4rem;
+  padding: 0 .3rem;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: none;
+  font-variant-numeric: tabular-nums;
+}
+.indice button:hover { border-color: var(--liquen); }
+.indice [aria-current="true"] { background: var(--tinta); color: var(--vagalume); }
+.indice .seta { border-color: var(--liquen); font-size: 1.3rem; }
+.indice .seta:disabled { opacity: .35; cursor: default; }
+
+.trilho {
+  position: relative; /* referência do offsetLeft dos slides em go() */
+  flex: 1;
+  display: flex;
+  gap: 2%;
+  padding-inline: var(--margem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+.trilho::-webkit-scrollbar { display: none; }
+.slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: clamp(1.5rem, 3vw, 3.5rem);
+  padding: clamp(1.25rem, 2.5vw, 2.5rem);
+  background: var(--papel);
+  border: 1px solid var(--liquen);
+  border-radius: 6px;
+  opacity: .35;
+  cursor: pointer;
+}
+.slide.atual { opacity: 1; cursor: auto; }
+@media (prefers-reduced-motion: no-preference) {
+  html, .trilho { scroll-behavior: smooth; }
+  .slide { transition: opacity .3s; }
+}
+
+.ficha { display: flex; flex-direction: column; gap: .9rem; min-width: 0; }
+.ficha p, .ficha h3 { margin: 0; }
+.nome { display: grid; gap: .15rem; }
+.n { color: var(--musgo); font-variant-numeric: tabular-nums; }
+.ficha h3 { font-size: clamp(2rem, 3.6vw, 3.4rem); font-weight: 600; line-height: 1.05; letter-spacing: -0.01em; }
+.nome .sci { font-size: 1.25rem; color: var(--musgo); }
+.by { color: var(--musgo); font-size: .95rem; }
+.escuta { max-width: 52ch; }
+.play {
+  align-self: start;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .75rem 1.5rem .75rem 1.15rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--tinta);
+  color: var(--folha);
+  font-weight: 600;
+}
+.play svg { color: var(--vagalume); font-size: 1.3rem; }
+.kind { min-height: 1.55em; color: var(--musgo); font-size: .95rem; }
+.spectro {
+  position: relative;
+  flex: 1;
+  min-height: 8rem;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--noite);
+}
+.spectro canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hz {
+  position: absolute;
+  left: 0;
+  transform: translateY(-50%);
+  padding: 0 .4rem;
+  font-size: .75rem;
+  color: var(--nevoa);
+  background: rgb(14 27 20 / .7);
+}
+.msg {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  padding: 1rem 1rem 1rem 4.5rem;
+  color: var(--nevoa);
+  font-size: .95rem;
+  text-align: center;
+}
+.msg[hidden], .sem-espectro canvas, .sem-espectro .hz { display: none; }
+.sem-espectro .msg { padding-left: 1rem; }
+.barra { display: flex; align-items: center; gap: .75rem; }
+.seek { flex: 1; min-width: 0; accent-color: var(--tinta); }
+.time { color: var(--musgo); font-size: .9rem; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.processo { min-width: 0; padding-left: clamp(1.25rem, 2.5vw, 2.5rem); border-left: 1px solid var(--liquen); }
+.processo h4 { margin: 0; font-size: 1.3rem; font-weight: 600; }
+.resumo { margin: .15rem 0 0; color: var(--musgo); font-size: .95rem; }
+.processo h5 { margin: 1.2rem 0 .45rem; font-size: 1rem; font-weight: 600; }
+.processo ul { margin: 0; padding: 0; list-style: none; }
+.takes { display: flex; flex-wrap: wrap; gap: .4rem; }
+.descartes { display: grid; gap: .45rem; }
+.descartes li { display: grid; grid-template-columns: auto 1fr; align-items: baseline; column-gap: .6rem; font-size: .95rem; }
+.descartes .take { justify-self: start; }
+.take {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  padding: .15rem .7rem;
+  border: 1px solid var(--liquen);
+  border-radius: 999px;
+  background: #fff;
+  font: .85rem/1.6 var(--mono);
+  white-space: nowrap;
+}
+.take.on { border-color: var(--tinta); background: var(--tinta); color: var(--vagalume); }
+.nota { margin: 1.1rem 0 0; color: var(--musgo); font-size: .95rem; }
+
+footer { padding: 1.5rem var(--margem) 2.5rem; color: var(--musgo); font-size: .95rem; }
+footer ul { display: flex; flex-wrap: wrap; gap: .4rem 1.5rem; margin: 0 0 .5rem; padding: 0; list-style: none; }
+footer a { color: var(--tinta); }
+
+@media (max-width: 760px) {
+  :root { --margem: 5%; }
+  .hero-corpo { grid-template-columns: 1fr; }
+  .cta { justify-self: start; }
+  .trilho { gap: 3%; align-items: start; }
+  .slide { grid-template-columns: 1fr; }
+  .spectro { flex: none; height: 7rem; }
+  .processo { padding: 1rem 0 0; border-left: 0; border-top: 1px solid var(--liquen); }
+  .indice, .indice ol { width: 100%; }
+  .indice ol { flex-wrap: nowrap; justify-content: space-between; gap: 0; }
+  .indice .seta, .dica-tecla { display: none; }
+  .dica-toque { display: inline; }
+  .indice button { min-width: 0; width: 1.75rem; height: 1.75rem; padding: 0; font-size: .85rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Quando a mata <span>responde</span></h1>
+  <div class="hero-corpo">
+    <div>
+      <p class="intro">Doze espécies da Mata Atlântica traduzidas em som com IA generativa. Em cada peça o animal fica em primeiro plano e a mata é o lugar de onde ele é ouvido.</p>
+      <p>Ao lado de cada peça estão os takes aprovados e os descartados, com o motivo de cada descarte.</p>
+      <p class="creditos">Criatividade Computacional, CIn/UFPE. Alex Lacava, Guilherme Rigaud, Lucas Melo, João Ohashi, Levi Serrano e Josias Netto.</p>
+    </div>
+    <a class="cta" href="#colecao"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>Ouvir a coleção</a>
+  </div>
+  <figure>
+    <img src="assets/espectro.webp" width="1600" height="360" alt="Espectrograma da peça do sabiá-una: as frases assobiadas aparecem como traços claros sobre o fundo escuro.">
+    <figcaption>Sabiá-una, peça 04: espectrograma de 1,2 a 9 kHz.</figcaption>
+  </figure>
+</header>
+
+<section class="colecao" id="colecao" aria-roledescription="carrossel" aria-label="A coleção">
+  <div class="topo">
+    <div>
+      <h2>A coleção</h2>
+      <p class="dica"><span class="dica-tecla">As setas trocam de espécie; Espaço toca e pausa.</span><span class="dica-toque">Deslize para trocar de espécie.</span></p>
+    </div>
+    <nav class="indice" id="indice" aria-label="Espécies">
+      <button class="seta" data-go="-1" aria-label="Espécie anterior"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.4 7.4 14 6l-6 6 6 6 1.4-1.4-4.6-4.6z"/></svg></button>
+      <ol id="numeros"></ol>
+      <button class="seta" data-go="1" aria-label="Próxima espécie"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6 8.6 7.4l4.6 4.6-4.6 4.6L10 18l6-6z"/></svg></button>
+    </nav>
+  </div>
+  <div class="trilho" id="trilho"></div>
+</section>
+
+<footer>
+  <ul>
+    <li><a href="https://github.com/Gui-Rigaud/quando-a-mata-responde/blob/main/prompts_desc.md">Prompts de cada espécie</a></li>
+    <li><a href="https://github.com/Gui-Rigaud/quando-a-mata-responde/blob/main/descartes/descartes.md">Registro de descartes</a></li>
+    <li><a href="https://github.com/Gui-Rigaud/quando-a-mata-responde">Repositório</a></li>
+  </ul>
+  <p>Projeto autoral de Criatividade Computacional, CIn/UFPE.</p>
+</footer>
+
+<audio id="audio" preload="metadata"></audio>
+
+<script>
+// Dados da coleção. Descartes: [rótulo, arquivo, motivo] — motivos resumidos de descartes/descartes.md.
+const SPECIES = [
+  { n: '01', nome: 'Mico-leão-dourado', sci: 'Leontopithecus rosalia', autor: 'Alex Lacava', ferramenta: 'ElevenLabs',
+    escuta: 'Trinado curto e repetido, ouvido de perto dentro do dossel, do take mais esparso ao mais denso.',
+    final: 'collection/01_mico_leao_dourado.wav',
+    takes: [],
+    descartes: [
+      ['#1', 'descartes/mico-leao/mico_leao_#1-1790683882720.wav', 'primeiro lote, soava pouco primata'],
+      ['#2', 'descartes/mico-leao/mico_leao_#2-1790683893616.wav', 'primeiro lote, soava pouco primata'],
+      ['#3', 'descartes/mico-leao/mico_leao_#3-1790683919874.wav', 'primeiro lote, soava pouco primata'],
+    ],
+    nota: 'Os takes aprovados do segundo lote não estão no repositório.' },
+  { n: '02', nome: 'Saúvas carregadeiras', sci: 'Atta sp.', autor: 'Alex Lacava', ferramenta: 'ElevenLabs',
+    escuta: 'O coletivo, não o indivíduo: milhares de corpos raspando a serrapilheira, sem compasso.',
+    final: 'collection/02_sauvas_carregadoras.wav',
+    takes: [], descartes: [],
+    nota: 'Três camadas empilhadas. Uma variação saiu duplicada byte a byte e foi descartada; os takes não estão no repositório.' },
+  { n: '03', nome: 'Araponga', sci: 'Procnias nudicollis', autor: 'Guilherme Rigaud', ferramenta: 'ElevenLabs',
+    escuta: 'Golpe metálico, como martelo na bigorna, no dossel ao amanhecer.',
+    final: 'collection/03_araponga.wav',
+    takes: ['generated/araponga_1.mp3', 'generated/araponga_2.mp3'],
+    descartes: [
+      ['ger1_t1', 'descartes/araponga/araponga_ger1_t1.wav', 'só ruído de fundo, sem o golpe metálico'],
+      ['ger1_t4', 'descartes/araponga/araponga_ger1_t4.wav', 'um golpe aos 2 s e silêncio até o fim'],
+    ] },
+  { n: '04', nome: 'Sabiá-una', sci: 'Turdus flavipes', autor: 'Guilherme Rigaud', ferramenta: 'ElevenLabs',
+    escuta: 'Frases assobiadas com pausas naturais, no topo da floresta de montanha.',
+    final: 'collection/04_sabiauna.wav',
+    takes: ['generated/sabiauna_1.mp3', 'generated/sabiauna_2.mp3'],
+    descartes: [
+      ['ger1_t3', 'descartes/sabiauna/sabiauna_ger1_t3.wav', 'parede contínua de assobios, sem pausas'],
+      ['ger1_t4', 'descartes/sabiauna/sabiauna_ger1_t4.wav', 'clipagem digital em 0 dBFS'],
+    ] },
+  { n: '05', nome: 'Onça-pintada', sci: 'Panthera onca', autor: 'Lucas Melo', ferramenta: 'ElevenLabs',
+    escuta: 'Esturro territorial: rugido áspero e serrado de predador, na mata à noite.',
+    final: 'collection/05_oncapintada.wav',
+    takes: ['generated/onca_pintada_1.wav', 'generated/onca_pintada_2.wav', 'generated/onca_pintada_3.wav', 'generated/onca_pintada_4.wav'],
+    descartes: [],
+    nota: 'Sem descarte registrado.' },
+  { n: '06', nome: 'Bugio-ruivo', sci: 'Alouatta guariba', autor: 'Lucas Melo', ferramenta: 'ElevenLabs',
+    escuta: 'Rugido gutural e ressonante que ecoa pelo alto dossel ao amanhecer.',
+    final: 'collection/06_bugioruivo.wav',
+    takes: ['generated/bugio_ruivo_1.wav', 'generated/bugio_ruivo_2.wav'],
+    descartes: [],
+    nota: 'Sem descarte registrado.' },
+  { n: '07', nome: 'Muriqui-do-sul', sci: 'Brachyteles arachnoides', autor: 'João Ohashi', ferramenta: 'Adobe Firefly',
+    escuta: 'Dois grupos se comunicando através do dossel, separados por momentos de escuta e distância.',
+    final: 'collection/07_muriqui.wav',
+    takes: ['generated/muriqui_1.wav', 'generated/muriqui_2.wav'],
+    descartes: [],
+    nota: 'Sem descarte registrado. Ambiência e vocalização foram geradas em separado e unidas na montagem.' },
+  { n: '08', nome: 'Mutum-de-Alagoas', sci: 'Mitu mitu', autor: 'João Ohashi', ferramenta: 'Adobe Firefly',
+    escuta: 'Presença, desaparecimento e ausência: o chamado isolado de uma espécie extinta na natureza.',
+    final: 'collection/08_mitumitu.wav',
+    takes: ['generated/mitumitu_1.wav', 'generated/mitumitu_2.wav', 'generated/mitumitu_3.wav', 'generated/mitumitu_4.wav'],
+    descartes: [
+      ['paisagem', 'descartes/mitu-mitu/Firefly-An_immersive_ecological_soundscape_of_the_Atlantic_Forest_in_northeastern_Brazil_Native_inse.wav', 'tentou controlar a peça inteira num prompt só'],
+      ['grave #1', 'descartes/mitu-mitu/Deep_low-pitched_res_#1-1790679326525.wav', 'grave, fechado e oco demais'],
+      ['curassow #4', 'descartes/mitu-mitu/Alagoas_curassow_(Mi_#4-1790679439697.wav', 'abafado, lembra um zíper abrindo e fechando'],
+      ['chamado #2', 'descartes/mitu-mitu/Mitu_mitu_bird_call,_#2-1790679524001.wav', 'variação não usada na montagem'],
+      ['chamado #4', 'descartes/mitu-mitu/Mitu_mitu_bird_call,_#4-1790679505870.wav', 'variação não usada na montagem'],
+    ] },
+  { n: '09', nome: 'Preguiça-de-pescoço-largo', sci: 'Bradypus torquatus', autor: 'Levi Serrano', ferramenta: 'ElevenLabs',
+    escuta: 'Gemido lento e grave no dossel escuro, com silêncio entre os chamados.',
+    final: 'collection/09_preguica.wav',
+    takes: ['generated/preguica_1.wav', 'generated/preguica_2.wav', 'generated/preguica_3.wav', 'generated/preguica_4.wav'],
+    descartes: [
+      ['ger1_t1', 'descartes/preguica/preguica_ger1_t1.wav', 'agudo contínuo, o bicho não se distingue'],
+      ['ger1_t2', 'descartes/preguica/preguica_ger1_t2.wav', 'agudo contínuo, o bicho não se distingue'],
+      ['ger1_t3', 'descartes/preguica/preguica_ger1_t3.wav', 'agudo contínuo, o bicho não se distingue'],
+      ['ger1_t4', 'descartes/preguica/preguica_ger1_t4.wav', 'agudo contínuo, o bicho não se distingue'],
+      ['ger2_t3', 'descartes/preguica/preguica_ger2_t3.wav', 'já se reconhece, mas contínuo e com agudo por cima'],
+      ['ger2_t4', 'descartes/preguica/preguica_ger2_t4.wav', 'só som agudo, como na geração 1'],
+      ['ger3_t2', 'descartes/preguica/preguica_ger3_t2.wav', 'só barulho agudo, desconfortável'],
+      ['ger3_t3', 'descartes/preguica/preguica_ger3_t3.wav', 'só barulho agudo, desconfortável'],
+    ] },
+  { n: '10', nome: 'Beija-flor-preto', sci: 'Florisuga fusca', autor: 'Levi Serrano', ferramenta: 'ElevenLabs',
+    escuta: 'Trinado agudo e seco, na fronteira entre ave e inseto: tradução de um canto ultrassônico.',
+    final: 'collection/10_beijaflorpreto.wav',
+    takes: ['generated/beija_flor_preto_1.wav', 'generated/beija_flor_preto_2.wav', 'generated/beija_flor_preto_3.wav'],
+    descartes: [
+      ['ger1_t2', 'descartes/beija_flor_preto/beija_flor_preto_ger1_t2.wav', 'fica perto e depois longe dentro do mesmo take'],
+    ] },
+  { n: '11', nome: 'Anta', sci: 'Tapirus terrestris', autor: 'Josias Netto', ferramenta: 'ElevenLabs',
+    escuta: 'Passos pesados, galhos e bufos perto do riacho, à noite. O assobio pedido não apareceu em nenhum take.',
+    final: 'collection/11_anta.wav',
+    takes: ['generated/anta_1.wav', 'generated/anta_2.wav', 'generated/anta_3.wav'],
+    descartes: [
+      ['ger1_t4', 'descartes/anta/anta_ger1_t4.wav', 'a anta não aparece, só ambiência'],
+      ['ger2_t4', 'descartes/anta/anta_ger2_t4.wav', 'soa como voz humana'],
+    ] },
+  { n: '12', nome: 'Sapo-martelo', sci: 'Boana faber', autor: 'Josias Netto', ferramenta: 'ElevenLabs',
+    escuta: 'Batidas ocas de dentro do ninho de barro, na beira da poça: o ferreiro da água, em diálogo com a araponga.',
+    final: 'collection/12_sapomartelo.wav',
+    takes: ['generated/sapo_martelo_1.wav', 'generated/sapo_martelo_2.wav', 'generated/sapo_martelo_3.wav'],
+    descartes: [
+      ['ger1_t2', 'descartes/sapo_martelo/sapo_martelo_ger1_t2.wav', 'trinado contínuo, soa como outro bicho'],
+    ] },
+];
+
+const $ = s => document.querySelector(s);
+const audio = $('#audio'), trilho = $('#trilho'), indice = $('#indice'), colecao = $('#colecao');
+const ICON = '<svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-play" d="M8 5v14l11-7z"/><path class="i-pause" d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>';
+const VAZIO = 'Toque a peça final ou um take do processo.';
+// Em file:// o Chrome trata o áudio como de outra origem e o MediaElementSource sai mudo:
+// o espectrograma fica desligado e o áudio toca direto.
+const semEspectro = location.protocol === 'file:';
+const MSG = semEspectro
+  ? 'O espectrograma aparece quando a página é servida por http (GitHub Pages ou python3 -m http.server). O áudio toca normalmente.'
+  : 'O espectrograma desenha aqui o som: frequência na vertical, tempo correndo para a esquerda.';
+const HZ = [[250, '250 Hz'], [1000, '1 kHz'], [4000, '4 kHz'], [12000, '12 kHz']]
+  .map(([hz, rot]) => `<span class="hz" data-hz="${hz}">${rot}</span>`).join('');
+const base = p => p.split('/').pop().replace(/\.\w+$/, '');
+const conta = (n, um, varios) => n ? `${n} ${n > 1 ? varios : um}` : '';
+const chip = (src, kind, rot) => `<button class="take" data-src="${src}" data-kind="${kind}">${ICON}${rot}</button>`;
+
+trilho.innerHTML = SPECIES.map(s => {
+  const takes = s.takes.map(t => `<li>${chip(t, `Take aprovado ${base(t)}`, base(t))}</li>`).join('');
+  const descartes = s.descartes.map(([rot, src, motivo]) =>
+    `<li>${chip(src, `Descarte ${rot}: ${motivo}`, rot)}<span>${motivo}</span></li>`).join('');
+  const resumo = [conta(s.takes.length, 'take aprovado', 'takes aprovados'), conta(s.descartes.length, 'descarte', 'descartes')].filter(Boolean).join(', ');
+  return `<article class="slide" aria-roledescription="slide" aria-label="${s.n} de ${SPECIES.length}: ${s.nome}">
+    <div class="ficha">
+      <div class="nome">
+        <p class="n">${s.n}</p>
+        <h3>${s.nome}</h3>
+        <p class="sci">${s.sci}</p>
+        <p class="by">por ${s.autor}, com ${s.ferramenta}</p>
+      </div>
+      <p class="escuta">${s.escuta}</p>
+      <button class="play" data-src="${s.final}" data-kind="Peça final">${ICON}Ouvir a peça final</button>
+      <p class="kind" aria-live="polite">${VAZIO}</p>
+      <div class="spectro${semEspectro ? ' sem-espectro' : ''}"><canvas aria-hidden="true"></canvas>${HZ}<p class="msg">${MSG}</p></div>
+      <div class="barra">
+        <input class="seek" type="range" min="0" max="1000" value="0" disabled aria-label="Posição no áudio de ${s.nome}">
+        <span class="time">0:00</span>
+      </div>
+    </div>
+    <div class="processo">
+      <h4>Processo</h4>
+      <p class="resumo">${resumo || 'Nenhum take ou descarte no repositório.'}</p>
+      ${takes ? `<h5>Takes aprovados</h5><ul class="takes">${takes}</ul>` : ''}
+      ${descartes ? `<h5>Descartes</h5><ul class="descartes">${descartes}</ul>` : ''}
+      ${s.nota ? `<p class="nota">${s.nota}</p>` : ''}
+    </div>
+  </article>`;
+}).join('');
+$('#numeros').innerHTML = SPECIES.map((s, i) =>
+  `<li><button data-ir="${i}" aria-label="${s.nome}" title="${s.nome}">${s.n}</button></li>`).join('');
+
+const slides = [...trilho.children];
+const numeros = [...indice.querySelectorAll('[data-ir]')];
+const [anterior, proxima] = indice.querySelectorAll('.seta');
+
+// Carrossel: scroll-snap nativo; o IntersectionObserver diz qual slide está no centro.
+let atual = -1;
+function setAtual(i) {
+  if (i === atual) return;
+  atual = i;
+  slides.forEach((s, k) => s.classList.toggle('atual', k === i));
+  numeros.forEach((b, k) => b.setAttribute('aria-current', k === i));
+  anterior.disabled = i === 0;
+  proxima.disabled = i === slides.length - 1;
+  if (dono !== i && !audio.paused) audio.pause(); // trocar de slide pausa; nada toca sozinho
+}
+const io = new IntersectionObserver(entries => {
+  for (const e of entries) if (e.isIntersecting) setAtual(slides.indexOf(e.target));
+}, { root: trilho, threshold: 0.6 });
+slides.forEach(s => io.observe(s));
+
+function go(i) {
+  i = Math.max(0, Math.min(slides.length - 1, i));
+  const foco = trilho.contains(document.activeElement);
+  const s = slides[i];
+  trilho.scrollTo({ left: s.offsetLeft - (trilho.clientWidth - s.offsetWidth) / 2 });
+  setAtual(i);
+  // o foco acompanha o slide, para o Espaço num botão focado não tocar o slide anterior
+  if (foco) s.querySelector('.play').focus({ preventScroll: true });
+}
+
+// Player: um único <audio> para a página toda, então só um som toca por vez.
+let current = null, dono = -1, cv = null, g = null;
+
+function play(src, kind, i) {
+  if (src === current) return toggle();
+  if (dono !== -1 && dono !== i) slides[dono].querySelector('.kind').textContent = VAZIO;
+  current = src; dono = i;
+  // encodeURIComponent por segmento: encodeURI não escapa o '#' de alguns nomes de descarte
+  audio.src = src.split('/').map(encodeURIComponent).join('/');
+  audio.play().catch(() => {}); // falha de carga aparece no evento 'error'
+  graph();
+  const s = slides[i];
+  s.querySelector('.kind').textContent = kind;
+  document.querySelectorAll('.on').forEach(el => el.classList.remove('on'));
+  s.querySelectorAll('[data-src]').forEach(b => b.dataset.src === src && b.classList.add('on'));
+  document.querySelectorAll('.seek').forEach((r, k) => { r.disabled = k !== i; });
+  cv = s.querySelector('canvas');
+  g = cv.getContext('2d');
+  if (!semEspectro) s.querySelector('.msg').hidden = true;
+}
+function toggle() {
+  if (dono !== atual) return play(SPECIES[atual].final, 'Peça final', atual);
+  audio.paused ? audio.play() : audio.pause();
+}
+
+trilho.addEventListener('click', e => {
+  const i = slides.indexOf(e.target.closest('.slide'));
+  if (i === -1) return;
+  if (i !== atual) return go(i); // clique num vizinho apagado só navega
+  const b = e.target.closest('button[data-src]');
+  if (b) play(b.dataset.src, b.dataset.kind, i);
+});
+indice.addEventListener('click', e => {
+  const b = e.target.closest('button');
+  if (b?.dataset.ir) go(+b.dataset.ir);
+  else if (b?.dataset.go) go(atual + +b.dataset.go);
+});
+
+// Teclado, para apresentar com passador. No hero, "próximo" desce até a coleção.
+const naColecao = () => colecao.getBoundingClientRect().top < innerHeight / 2;
+document.addEventListener('keydown', e => {
+  if (e.altKey || e.ctrlKey || e.metaKey || e.target.matches('input')) return;
+  const d = { ArrowRight: 1, PageDown: 1, ArrowLeft: -1, PageUp: -1 }[e.key];
+  if (!naColecao()) {
+    if (d === 1) { e.preventDefault(); colecao.scrollIntoView(); }
+    return;
+  }
+  if (d) { e.preventDefault(); go(atual + d); }
+  else if (e.key === ' ' && !trilho.contains(e.target)) { e.preventDefault(); e.target.blur(); toggle(); }
+});
+
+const mmss = t => isFinite(t) ? `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, '0')}` : '0:00';
+const progresso = () => {
+  if (dono === -1) return;
+  slides[dono].querySelector('.seek').value = audio.duration ? audio.currentTime / audio.duration * 1000 : 0;
+  slides[dono].querySelector('.time').textContent = `${mmss(audio.currentTime)} / ${mmss(audio.duration)}`;
+};
+audio.addEventListener('timeupdate', progresso);
+audio.addEventListener('loadedmetadata', progresso);
+trilho.addEventListener('input', e => {
+  if (e.target.matches('.seek') && audio.duration) audio.currentTime = e.target.value / 1000 * audio.duration;
+});
+audio.addEventListener('play', () => document.body.classList.add('tocando'));
+audio.addEventListener('pause', () => document.body.classList.remove('tocando'));
+audio.addEventListener('error', () => { slides[dono].querySelector('.kind').textContent = `Não foi possível carregar ${current}.`; });
+
+// Espectrograma ao vivo, um canvas por slide. Eixo de frequência em escala log, para caber do bugio ao beija-flor.
+const FMIN = 80, FMAX = 16000, STEP = 1, DB_MIN = -105, DB_MAX = -35; // ajuste fino do brilho: DB_MIN/DB_MAX
+const STOPS = [[0, [14, 27, 20]], [80, [24, 64, 44]], [160, [112, 160, 60]], [220, [215, 238, 92]], [255, [248, 252, 226]]];
+const PALETTE = Array.from({ length: 256 }, (_, v) => {
+  const k = STOPS.findIndex(([p]) => p >= v);
+  if (k === 0) return `rgb(${STOPS[0][1]})`;
+  const [p0, c0] = STOPS[k - 1], [p1, c1] = STOPS[k], t = (v - p0) / (p1 - p0);
+  return `rgb(${c0.map((c, j) => Math.round(c + (c1[j] - c) * t))})`;
+});
+const altura = f => 1 - Math.log(f / FMIN) / Math.log(FMAX / FMIN); // 0 = topo
+document.querySelectorAll('[data-hz]').forEach(el => { el.style.top = altura(+el.dataset.hz) * 100 + '%'; });
+
+const fit = () => document.querySelectorAll('.spectro canvas').forEach(c => { c.width = c.clientWidth; c.height = c.clientHeight; });
+fit();
+addEventListener('resize', fit);
+
+let ctx, an, bins;
+function graph() {
+  if (semEspectro) return;
+  if (!ctx) {
+    ctx = new AudioContext();
+    an = ctx.createAnalyser();
+    an.fftSize = 4096;
+    an.minDecibels = DB_MIN;
+    an.maxDecibels = DB_MAX;
+    an.smoothingTimeConstant = 0.2;
+    ctx.createMediaElementSource(audio).connect(an).connect(ctx.destination);
+    bins = new Uint8Array(an.frequencyBinCount);
+    requestAnimationFrame(draw);
+  }
+  ctx.resume();
+}
+function draw() {
+  requestAnimationFrame(draw);
+  if (audio.paused || !cv) return;
+  const w = cv.width, h = cv.height, hzPorBin = ctx.sampleRate / an.fftSize;
+  g.drawImage(cv, -STEP, 0);
+  an.getByteFrequencyData(bins);
+  for (let y = 0; y < h; y++) {
+    const f = FMIN * (FMAX / FMIN) ** (1 - y / h);
+    g.fillStyle = PALETTE[bins[Math.round(f / hzPorBin)]];
+    g.fillRect(w - STEP, y, STEP, 1);
+  }
+}
+
+setAtual(0);
+</script>
+</body>
+</html>
